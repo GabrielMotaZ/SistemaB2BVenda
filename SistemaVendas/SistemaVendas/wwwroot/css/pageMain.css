@@ -1,0 +1,36 @@
+table,
+th,
+td {
+    border: 1px black;
+    /*font-size: 10px;*/
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    /*background-color: pink;*/
+}
+
+table {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+th,
+td {
+    padding: 6px;
+    text-align: center;
+    width: 120px;
+}
+
+th {
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #DCEBE6;
+}
+
+tr:hover:nth-child(1n + 2) {
+    background-color: #085F63;
+    color: #fff;
+}

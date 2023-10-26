@@ -1,0 +1,38 @@
+﻿@model SistemaVendas.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+
+        <div class="formConteiner">
+        <form asp-action="QueryLogin">
+            
+            <div class="loginPassword">
+                <div class="login">
+                    <label></label>
+                    <input asp-for="Nome" type="text" class="inputLogin" placeholder="Usuario">
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+
+                <div class="password">
+                    <label></label>
+                <input asp-for="Senha" type="password" class="inputLogin" placeholder="password">
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                     @if (TempData["InfoMessage"] != null)
+                    {
+                            <h6 class="alert" style="color: darkred;">@TempData["InfoMessage"] </h6>
+                    }
+
+                <button type="submit" value="EnterLogin" class="btnLogin">Login</button>
+              
+            </div>
+        </form>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

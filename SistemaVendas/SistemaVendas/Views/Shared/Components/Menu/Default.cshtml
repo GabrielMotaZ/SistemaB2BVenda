@@ -1,0 +1,54 @@
+﻿
+@model IEnumerable<SistemaVendas.ViewModels.MenuViewModel>
+
+    <input class="iptMenuLateral" type="checkbox" id="chec">
+
+<label id="toggle-menu">
+        <h3>MENU<img src='~/Img/alt_menu_icon20x20.png'></h3>
+    </label>
+
+<nav id="menu" class="closed">
+        <ul class="menulateral">
+
+            @foreach(var menu in Model){
+
+            <li class="lilateral">
+
+                <a class="aLateral" href="#">@menu.Nome</a>
+
+                <ul class="ulSublateral">
+
+                    @if(menu.SubMenu != null){
+
+                        @foreach (var sub in menu.SubMenu)
+                        {
+                            
+                            <li><a>@Html.ActionLink(sub.Nome,sub.Action,sub.Controller, null, new {@class ="liSublateral" }) </a></li>
+                        }
+                    }
+                </ul>
+
+            </li>
+
+            }
+
+        </ul>
+
+    </nav>
+
+    <script>
+
+        const toggleButton = document.getElementById("toggle-menu");
+        const menu = document.getElementById("menu");
+
+        toggleButton.addEventListener("click", function () {
+            if (menu.classList.contains("closed")) {
+                menu.style.left = "0"; // Abre o menu
+                menu.classList.remove("closed");
+            } else {
+                menu.style.left = "-250px"; // Fecha o menu
+                menu.classList.add("closed");
+            }
+        });
+
+    </script>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<SistemaVendas.ViewModels.MenuTopoViewModel>
+
+
+<header class="header">
+    <nav>
+        <ul class="menu">
+
+            @*@foreach(var menu in Model){*@
+
+            <li class="liTopo">
+
+				<a class="atopo" href="#"><img class="userImage" src='~/Img/user.png'></a>
+
+                <ul class="ulSubTopo">
+
+                    @if(Model != null){
+
+                        @foreach (var sub in Model)
+                        {
+                            
+                            <li class="liSubTopo"><a>@Html.ActionLink(sub.Nome,sub.Action,sub.Controller, null, new {@class ="atopo" }) </a></li>
+                        }
+                    }
+                </ul>
+
+            </li>
+
+            @*}*@
+
+        </ul>
+
+    </nav>
+</header>

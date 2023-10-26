@@ -1,0 +1,97 @@
+@keyframes rotate {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+.body {
+    /* background-color: #6e6e6e; */
+}
+
+.iconLogo {
+    display: block;
+    position: relative;
+    width: 550px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 1;
+    animation: rotate 8s linear infinite;
+}
+
+/*h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    text-align: center;
+}*/
+
+.formConteiner {
+    position: relative;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    border-radius: 10px;
+    background-color: #EEEEEE;
+    box-shadow: 10px 5px 5px #c4c4c4;
+    /* background: rgba(0, 0, 0, 0.4); */
+    background: rgba(238, 238, 238, 0.8);
+    z-index: 11;
+}
+
+.loginPassword,
+.label {
+    display: block;
+    font-weight: bolder;
+}
+
+
+
+.inputLogin {
+    display: block;
+    width: 260px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: solid 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login {
+    /*padding: 16px;*/
+}
+
+.password {
+    /*padding: 16px;*/
+}
+
+.btnLogin {
+    display: block;
+    background-color: #0D416B;
+    color: white;
+    padding: 14px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+    .btnLogin:hover {
+        opacity: 0.8;
+    }
+
+.btnLogin {
+    text-decoration: none;
+    padding: 14px 70px;
+    align-items: center;
+    color: white;
+    /*margin-left: 20px;*/
+}
