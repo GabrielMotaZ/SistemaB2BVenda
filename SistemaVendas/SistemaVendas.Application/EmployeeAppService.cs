@@ -11,7 +11,11 @@ namespace SistemaVendas.Application
     public class EmployeeAppService : AppServiceBase<Employee>, IEmployeeAppService
     {
         private readonly IEmployeeService _employeeService;
+
+        //CORRIGIR -- Verificar essa injeção
         private readonly ILoginAppService _loginAppService;
+
+
         private readonly IEmailService    _emailService;
         private readonly IMapper _mapper;   
 
@@ -69,9 +73,8 @@ namespace SistemaVendas.Application
 
             _loginAppService.CreateLogin(user);
 
-            string subject = "Login Senha Sistema venda";
-            string body = $"Seu login e senha foram criados confira: <br> Login: {createMap.Nome} <br> Senha: {senha}";
-            _emailService.SendEmail(createMap.Email, subject, body);
+    
+			_emailService.SendEmail(createMap.Email,  createMap.Nome, senha);
 
 
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Application.ViewModels;
 
@@ -33,19 +34,29 @@ namespace SistemaVendas.Controllers
         }
 
         // GET: ClientController/Create
-        public ActionResult Create()
+        public ActionResult CreatClient()
         {
+            var sexo = new List<SelectListItem>
+            {
+                new SelectListItem {Value ="F", Text = "F"},
+                new SelectListItem {Value ="M", Text = "M"},
+                new SelectListItem {Value ="OU", Text = "OU"}
+            };
+            ViewBag.sexo = sexo;
+
             return View();
         }
 
         // POST: ClientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult CreatClient(ClientViewModel collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid) { }
+
+                return RedirectToAction();
             }
             catch
             {
@@ -54,15 +65,16 @@ namespace SistemaVendas.Controllers
         }
 
         // GET: ClientController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult UpdatClient(int id)
         {
-            return View();
+            var client = _clientAppService.getClientId(id);
+            return View(client);
         }
 
         // POST: ClientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult UpdatClient(int id, ClientViewModel collection)
         {
             try
             {

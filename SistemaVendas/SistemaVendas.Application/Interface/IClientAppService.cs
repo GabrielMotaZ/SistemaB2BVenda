@@ -11,5 +11,7 @@ namespace SistemaVendas.Application.Interface
     {
 
         IEnumerable<ClientViewModel>  getClient();
+
+        ClientViewModel getClientId(int id);
     }
 }

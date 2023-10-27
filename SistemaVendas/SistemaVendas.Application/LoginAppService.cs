@@ -32,7 +32,7 @@ namespace SistemaVendas.Application
         public string geratePassword()
         {
 
-            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$&*";
 
             StringBuilder senha = new StringBuilder();
             Random random = new Random();
@@ -48,10 +48,25 @@ namespace SistemaVendas.Application
 
         public IEnumerable<LoginViewModel> QueryLogin(LoginViewModel loginViewModel)
         {
+            try
+            {
+				var login = _loginService.QueryLogin(_mapper.Map<Login>(loginViewModel));
 
-            var login = _loginService.QueryLogin( _mapper.Map<Login>(loginViewModel));
+                if (login.Count() == 0)
+                {
+                    throw new Exception("Usuario não encontrado!!");
+                }
 
-            return  _mapper.Map<IEnumerable<LoginViewModel>>(login);
+				return _mapper.Map<IEnumerable<LoginViewModel>>(login);
+			}
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+            
+
+           
         }
 
 

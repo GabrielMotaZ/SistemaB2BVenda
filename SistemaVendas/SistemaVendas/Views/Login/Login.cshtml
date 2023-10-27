@@ -1,38 +1,62 @@
 ﻿@model SistemaVendas.ViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Login";
-    Layout = "_Layout";
+	ViewData["Title"] = "Login";
+	Layout = "_Layout";
 }
 
 
-        <div class="formConteiner">
-        <form asp-action="QueryLogin">
-            
-            <div class="loginPassword">
-                <div class="login">
-                    <label></label>
-                    <input asp-for="Nome" type="text" class="inputLogin" placeholder="Usuario">
-                    <span asp-validation-for="Nome" class="text-danger"></span>
-                </div>
 
-                <div class="password">
-                    <label></label>
-                <input asp-for="Senha" type="password" class="inputLogin" placeholder="password">
-                    <span asp-validation-for="Senha" class="text-danger"></span>
-                </div>
 
-                     @if (TempData["InfoMessage"] != null)
-                    {
-                            <h6 class="alert" style="color: darkred;">@TempData["InfoMessage"] </h6>
-                    }
+<div class="formConteiner">
+	<form asp-action="QueryLogin">
 
-                <button type="submit" value="EnterLogin" class="btnLogin">Login</button>
-              
-            </div>
-        </form>
-    </div>
+		<div class="loginPassword">
+			<div class="login">
+				<label></label>
+				<input asp-for="Nome" type="text" class="inputLogin" placeholder="Usuario">
+				<span asp-validation-for="Nome" class="text-danger"></span>
+			</div>
+
+			<div class="password">
+				<label></label>
+				<input asp-for="Senha" type="password" class="inputLogin" placeholder="password">
+				<span asp-validation-for="Senha" class="text-danger"></span>
+			</div>
+
+			@if (TempData["InfoMessage"] != null)
+			{
+				<p class="alert text-center" style="color: darkred;">@TempData["InfoMessage"] </p>
+			}
+
+
+
+
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group" style="text-align:center;">
+						<a style="color:darkred;" href="@Url.Action("UpdatLogin","Login")"><i>Alterar Senha!</i></a>
+					</div>
+				</div>
+			</div>
+
+			@*<button type="submit" value="EnterLogin" class="btnLogin">Login</button>*@
+
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-group" style="text-align:center;">
+						<input type="submit" value="Enter" class="btn btn-primary btn-block" style="width:50%; margin-top: 20px;" />
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</form>
+</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

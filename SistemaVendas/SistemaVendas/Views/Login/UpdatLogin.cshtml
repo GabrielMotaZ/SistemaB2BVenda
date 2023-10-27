@@ -1,0 +1,122 @@
+﻿@model SistemaVendas.ViewModels.LoginViewModel
+
+@{
+	ViewData["Title"] = "UpdatLogin";
+}
+
+<h3>Update login</h3>
+
+@*<div class="formConteiner">*@
+
+
+@*	<div class="row">
+		<div class="col-md-12">
+		<form asp-action="UpdatLogin" class="p-4 p-md-5 border rounded-3 bg-light">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+				<div class="loginPassword">
+
+					<div class="row">
+						<div class="col-md">
+							<div class="form-group">
+								<label asp-for="Nome" class="control-label"></label>
+								<input asp-for="Nome" class="form-control" />
+								<span asp-validation-for="Nome" class="text-danger"></span>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="form-group">
+						<label asp-for="Senha" class="control-label"></label>
+						<input asp-for="Senha" class="form-control" />
+						<span asp-validation-for="Senha" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Senha" class="control-label"></label>
+						<input asp-for="Senha" class="form-control" />
+						<span asp-validation-for="Senha" class="text-danger"></span>
+					</div>
+
+					<div class="form-group">
+						<input type="submit" value="Save" class="btn btn-primary" />
+					</div>
+
+
+
+				</div>
+
+
+			</form>
+		</div>
+	</div>*@
+
+
+
+
+@*</div>*@
+
+
+
+
+
+<div class="formConteiner">
+	<form asp-action="UpdatLogin">
+
+		<div class="loginPassword">
+
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group">
+						<input asp-for="Nome" type="text" class="inputLogin" placeholder="Usuario">
+						<span asp-validation-for="Nome" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group">
+						<input asp-for="Senha" type="password" class="inputLogin" placeholder="Old password">
+						<span asp-validation-for="Senha" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group">
+						<input asp-for="Senha" type="password" class="inputLogin" placeholder="New password">
+						<span asp-validation-for="Senha" class="text-danger"></span>
+					</div>
+				</div>
+			</div>
+
+			@if (TempData["InfoMessage"] != null)
+			{
+				<p class="alert text-center" style="color: darkred;">@TempData["InfoMessage"] </p>
+			}
+
+
+			@*<button type="submit" value="Salvar" class="btnLogin"></button>*@
+
+			<div class="form-group" style="text-align:center;">
+				<input type="submit" value="Save" class="btn btn-primary btn-block" />
+				<a asp-action="Login" type="button" class="btn btn-secondary">Back to List</a>
+
+			</div>
+
+		</div>
+	</form>
+</div>
+
+
+
+
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

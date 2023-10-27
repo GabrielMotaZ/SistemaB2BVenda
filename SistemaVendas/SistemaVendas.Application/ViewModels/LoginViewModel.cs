@@ -1,4 +1,5 @@
 ﻿using SistemaVendas.Domain.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace SistemaVendas.ViewModels
 {
@@ -6,8 +7,10 @@ namespace SistemaVendas.ViewModels
     {
         public int IdLogin { get; set; }
 
+        [Required]
         public string? Nome { get; set; }
 
+        [Required]
         public string? Senha { get; set; }
 
         public DateTime? Data { get; set; }

@@ -57,16 +57,19 @@ namespace SistemaVendas.Controllers
             }
         }
 
+
+ 
         // GET: LoginController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult UpdatLogin(int? id)
         {
-            return View();
+			
+			return View();
         }
 
         // POST: LoginController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult UpdatLogin(int id, IFormCollection collection)
         {
             try
             {

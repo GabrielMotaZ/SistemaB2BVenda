@@ -24,14 +24,19 @@ namespace SistemaVendas.Infra.Data.Repositories
 
             try
             {
-                string consultaLogin = $@" Select 
-                                                 nome 
-                                                ,cpf  
+                string consultaLogin = $@" 
 
-                                                from
-                                                    Employee
-                                                where 
-                                                    nome = '{login.Nome}'
+                                            SELECT 
+			                                         idLogin
+			                                        ,nome
+			                                        ,senha
+			                                        ,data
+			                                        ,idAcessos
+			                                        ,idEmployee
+		                                        FROM 
+			                                        Login
+		                                        WHERE 
+			                                        nome =  '{login.Nome}'
                                                                   
                  ";
 
@@ -45,7 +50,7 @@ namespace SistemaVendas.Infra.Data.Repositories
             catch (Exception ex)
             {
 
-                throw new Exception("Usuario ou senha invalido ");
+                throw new Exception(ex.Message);
             }
 
             throw new NotImplementedException();

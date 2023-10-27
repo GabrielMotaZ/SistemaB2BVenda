@@ -1,27 +1,27 @@
 ﻿@model IEnumerable<SistemaVendas.ViewModels.EmployeeViewModel>
 @{
-    ViewData["Title"] = "Employees";
+	ViewData["Title"] = "Employees";
 }
 
 
 <div class="container">
 
-    <div id="view-all">
-    @await Html.PartialAsync("_ViewAll", Model)
-</div>
+	<div id="view-all">
+		@await Html.PartialAsync("_ViewAll", Model)
+	</div>
 
-<div class="modal" tabindex="-1" role="dialog" id="form-modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="modal" tabindex="-1" role="dialog" id="form-modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title"></h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				</div>
+			</div>
+		</div>
+	</div>
 
 </div>
 
@@ -29,7 +29,7 @@
 
 
 @section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
 }

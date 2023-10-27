@@ -29,5 +29,12 @@ namespace SistemaVendas.Application
             var getClient = _clientService.GetAll();
             return _mapper.Map<IEnumerable<ClientViewModel>>(getClient);
         }
+
+        public ClientViewModel getClientId(int id)
+        {
+            var client = _clientService.GetById(id);
+
+           return _mapper.Map<ClientViewModel>(client);
+        }
     }
 }
