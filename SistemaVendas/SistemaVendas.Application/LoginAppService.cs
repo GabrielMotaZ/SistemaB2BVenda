@@ -1,5 +1,4 @@
-﻿
-using AutoMapper;
+﻿using AutoMapper;
 using Ardalis.GuardClauses;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Domain.Entities;
@@ -9,66 +8,98 @@ using System.Text;
 
 namespace SistemaVendas.Application
 {
-    public class LoginAppService : AppServiceBase<Login>, ILoginAppService
-    {
-        private readonly ILoginService _loginService;
-        private readonly IMapper _mapper;
+	public class LoginAppService : AppServiceBase<Login>, ILoginAppService
+	{
+		private readonly ILoginService _loginService;
+		private readonly IMapper _mapper;
 
-        public LoginAppService(ILoginService loginService, IMapper mapper)
-            : base(loginService)
-        {
-            _loginService = Guard.Against.Null(loginService, nameof(loginService));
-            _mapper = mapper;
+		public LoginAppService(ILoginService loginService, IMapper mapper)
+			: base(loginService)
+		{
+			_loginService = Guard.Against.Null(loginService, nameof(loginService));
+			_mapper = mapper;
 
-        }
+		}
 
-        public void  CreateLogin(LoginViewModel loginViewModel)
-        {
-            var login = _mapper.Map<Login>(loginViewModel);
+		public LoginViewModel GetLogin(string email, string? password)
+		{
+			try
+			{
+				var login = _loginService.GetLogin(email, password);
 
-            _loginService.Add(login);
-        }
+				if (login.Data == null)
+				{
+					throw new NullReferenceException("Vamos validar sua senha!!!");
+				}
 
-        public string geratePassword()
-        {
-
-            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$&*";
-
-            StringBuilder senha = new StringBuilder();
-            Random random = new Random();
-
-            for (int i = 0; i < 6; i++)
-            {
-                int index = random.Next(0, caracteres.Length);
-                senha.Append(caracteres[index]);
-            }
-
-            return senha.ToString();
-        }
-
-        public IEnumerable<LoginViewModel> QueryLogin(LoginViewModel loginViewModel)
-        {
-            try
-            {
-				var login = _loginService.QueryLogin(_mapper.Map<Login>(loginViewModel));
-
-                if (login.Count() == 0)
-                {
-                    throw new Exception("Usuario não encontrado!!");
-                }
-
-				return _mapper.Map<IEnumerable<LoginViewModel>>(login);
+				return _mapper.Map<LoginViewModel>(login);
 			}
-            catch (Exception ex)
-            {
+			catch (InvalidOperationException)
+			{
+				throw new InvalidOperationException("usuario ou senha invalido");
+			}
+			catch (NullReferenceException ex)
+			{
+				throw new NullReferenceException(ex.Message);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception(ex.Message);
+			}
 
-                throw new Exception(ex.Message);
-            }
-            
+		}
 
-           
-        }
+		public LoginViewModel GetLoginId(int id)
+		{
+			var loginMap = _loginService.GetById(id);
+
+			var mapLogi = _mapper.Map<LoginViewModel>(loginMap);
+			return mapLogi;
+		}
+
+		public void CreateLogin(LoginViewModel loginViewModel)
+		{
+			var login = _mapper.Map<Login>(loginViewModel);
+
+			_loginService.Add(login);
+		}
+
+		public void UpdateLogin(int id, LoginViewModel loginViewModel)
+		{
+
+			try
+			{
+				var valida = _loginService.GetLogin(loginViewModel.Email,null);
+
+				if (loginViewModel.Senha == loginViewModel.newPassword)
+				{
+					throw new Exception("Nova senha deve ser diferenre da antiga senha!!!");
+				}else if (loginViewModel.Senha != valida.Senha)
+				{
+					throw new InvalidOperationException("senha do email invalida!!");
+				}
+
+			
+				valida.Data = DateTime.Now;
+				valida.Senha = loginViewModel.newPassword;
+
+				var login = _mapper.Map<Login>(valida);
+
+				_loginService.Update(login);
+			}
+			catch (InvalidOperationException ex)
+			{
+				throw new InvalidOperationException(ex.Message);
+			}
+
+			catch (Exception ex)
+			{
+
+				throw new Exception(ex.Message);
+			}
+
+		}
 
 
-    }
+	}
 }

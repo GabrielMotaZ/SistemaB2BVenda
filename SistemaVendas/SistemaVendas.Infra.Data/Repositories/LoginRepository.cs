@@ -4,6 +4,11 @@ using SistemaVendas.Infra.Data.Contexto;
 using System.Data;
 using Dapper;
 using SistemaVendas.Contexto;
+using static Dapper.SqlMapper;
+using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using Org.BouncyCastle.Crypto.Digests;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {
@@ -18,17 +23,16 @@ namespace SistemaVendas.Infra.Data.Repositories
             _sistemaContext = sistemaContext;
         }
 
-        public  IEnumerable<Login> QueryLogin(Login login)
+        public  Login GetLogin(string email, string? password)
         {
-
-
-            try
-            {
+			try
+			{
                 string consultaLogin = $@" 
 
                                             SELECT 
 			                                         idLogin
-			                                        ,nome
+                                                    ,Nome
+			                                        ,email
 			                                        ,senha
 			                                        ,data
 			                                        ,idAcessos
@@ -36,25 +40,39 @@ namespace SistemaVendas.Infra.Data.Repositories
 		                                        FROM 
 			                                        Login
 		                                        WHERE 
-			                                        nome =  '{login.Nome}'
+			                                        email =  '{email}'
                                                                   
                  ";
 
+                if (!string.IsNullOrEmpty(password))
+                {
+                    consultaLogin += $@" AND senha = '{password}'";
+
+				}
+
+
                 var connection = _conexaoContext.GetConnection();
 
-                var t =   connection.Query<Login>(consultaLogin, null, commandType: CommandType.Text);
+                var t =   connection.QueryFirst<Login>(consultaLogin, null, commandType: CommandType.Text);
 
                 return t;
 
             }
-            catch (Exception ex)
-            {
+     
+            catch(InvalidOperationException te)
+			{
+				throw new InvalidOperationException(te.Message);
+			}
+			catch (Exception ex)
+			{
 
-                throw new Exception(ex.Message);
-            }
-
-            throw new NotImplementedException();
+				throw new Exception(ex.Message);
+			}
+			
         }
 
-    }
+
+	}
+
 }
+

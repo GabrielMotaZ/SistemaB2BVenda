@@ -1,10 +1,10 @@
-﻿
-using SistemaVendas.Domain.Entities;
+﻿using SistemaVendas.Domain.Entities;
 
 namespace SistemaVendas.Domain.Interfaces.Repositories
 {
     public interface ILoginRepository : IRepositoryBase<Login>
     {
-        IEnumerable<Login> QueryLogin(Login login);
-    }
+        Login GetLogin(string email, string? password);
+
+	}
 }

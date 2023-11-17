@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemaVendas.Application.Interface;
-
+using SistemaVendas.Application.ViewModels;
 using SistemaVendas.ViewModels;
 
 namespace SistemaVendas.Controllers
@@ -31,20 +31,30 @@ namespace SistemaVendas.Controllers
 
 		public ActionResult CreateEmployee()
 		{
-			var turno = new List<SelectListItem>
+
+			var turno = new List<SelectListItem>();
+
+			foreach (var valorEnum in Enum.GetValues(typeof(enumViewModel.turno)))
 			{
-				new SelectListItem { Value = "Manhan", Text = "Manhan" },
-				new SelectListItem { Value = "Tarde" , Text = "Tarde"  },
-				new SelectListItem { Value = "Noite" , Text = "Noite"  }
-			};
+				turno.Add(new SelectListItem
+				{
+					Text = valorEnum.ToString(),
+					Value = ((int)valorEnum).ToString()
+				});
+			}
 			ViewBag.turno = turno;
 
-			var sexo = new List<SelectListItem>
+		
+			var sexo = new List<SelectListItem>();
+
+			foreach (var valorEnum in Enum.GetValues(typeof(enumViewModel.genero)))
 			{
-				new SelectListItem {Value ="F", Text = "F"},
-				new SelectListItem {Value ="M", Text = "M"},
-				new SelectListItem {Value ="OU", Text = "OU"}
-			};
+				sexo.Add(new SelectListItem
+				{
+					Text = valorEnum.ToString(),
+					Value = ((int)valorEnum).ToString()
+				});
+			}
 			ViewBag.sexo = sexo;
 
 			return View();
@@ -84,22 +94,29 @@ namespace SistemaVendas.Controllers
 
 			var editEmployee = _employeeAppService.GetEmployeeId(id);
 
-			var turno = new List<SelectListItem>
+			var turno = new List<SelectListItem> ();
+
+			foreach (var valorEnum in Enum.GetValues(typeof(enumViewModel.turno)))
 			{
-				new SelectListItem { Value = editEmployee.turno, Text = editEmployee.turno },
-				new SelectListItem { Value = "Manhan", Text = "Manhan" },
-				new SelectListItem { Value = "Tarde" , Text = "Tarde"  },
-				new SelectListItem { Value = "Noite" , Text = "Noite"  }
-			};
+				turno.Add(new SelectListItem
+				{
+					Text = valorEnum.ToString(),
+					Value = ((int)valorEnum).ToString()
+				});
+			}
 			ViewBag.turno = turno;
 
-			var sexo = new List<SelectListItem>
+
+			var sexo = new List<SelectListItem>();
+
+			foreach (var valorEnum in Enum.GetValues(typeof(enumViewModel.genero)))
 			{
-				new SelectListItem {Value =editEmployee.sexo, Text = editEmployee.sexo},
-				new SelectListItem {Value ="F", Text = "F"},
-				new SelectListItem {Value ="M", Text = "M"},
-				new SelectListItem {Value ="OU", Text = "OU"}
-			};
+				sexo.Add(new SelectListItem
+				{
+					Text = valorEnum.ToString(),
+					Value = ((int)valorEnum).ToString()
+				});
+			}
 			ViewBag.sexo = sexo;
 
 

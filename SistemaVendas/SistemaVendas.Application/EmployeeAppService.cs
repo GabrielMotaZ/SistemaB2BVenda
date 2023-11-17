@@ -13,17 +13,19 @@ namespace SistemaVendas.Application
         private readonly IEmployeeService _employeeService;
 
         //CORRIGIR -- Verificar essa injeção
-        private readonly ILoginAppService _loginAppService;
+        //private readonly ILoginAppService _loginAppService;
+
+        private readonly ILoginService _loginService;
 
 
         private readonly IEmailService    _emailService;
         private readonly IMapper _mapper;   
 
-        public EmployeeAppService(IEmployeeService employeeService, IMapper mapper, ILoginAppService loginAppService, IEmailService emailService)
+        public EmployeeAppService(IEmployeeService employeeService, IMapper mapper, ILoginService loginService, IEmailService emailService)
             : base(employeeService) 
         {
             _employeeService = employeeService;
-            _loginAppService = loginAppService;
+			_loginService = loginService;
             _emailService = emailService;
             _mapper = mapper;
         }
@@ -54,27 +56,35 @@ namespace SistemaVendas.Application
 
         public void CreateEmployee(EmployeeViewModel employeeViewModel)
         {
-            var login = new LoginViewModel();
+            
 
             var createMap = _mapper.Map<Employee>(employeeViewModel);
 
             _employeeService.Add(createMap);
 
-            var senha = _loginAppService.geratePassword();
+            var senha = _loginService.geratePassword();
 
            
-            login.Nome = createMap.Nome;
-            login.Senha = senha;
-            login.Data = DateTime.Now;
-            login.IdEmployee = createMap.IdFunc;
+            //login.Nome          = createMap.Nome;
+            //login.Senha         = senha;
+            //login.Data          = null;
+            //login.IdEmployee    = createMap.IdFunc;
+
+           var login = (new LoginViewModel
+            {
+				Email       = createMap.Email,
+			    Senha       = senha,
+			    Data        = null,
+			    IdEmployee  = createMap.IdFunc,
+		    });
 
 
-            var user = _mapper.Map<LoginViewModel>(login);
+            var user = _mapper.Map<Login>(login);
 
-            _loginAppService.CreateLogin(user);
+            _loginService.Add(user);
 
     
-			_emailService.SendEmail(createMap.Email,  createMap.Nome, senha);
+			_emailService.EmailPassword(createMap.Email,  createMap.Nome, senha);
 
 
         }

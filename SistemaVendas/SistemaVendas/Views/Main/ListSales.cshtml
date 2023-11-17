@@ -1,65 +1,77 @@
 ﻿@model IEnumerable<SistemaVendas.ViewModels.SaleViewModel>
 
 @{
-    ViewData["Title"] = "ListSales";
+	ViewData["Title"] = "ListSales";
 }
 
 <h1>Sales</h1>
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nomeProduto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nomeCliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Valor)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.valorVenda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Funcionario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataVenda)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeProduto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomeCliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Valor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Quantidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.valorVenda)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Funcionario)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataVenda)
-            </td>
-        
-        </tr>
-}
-    </tbody>
-</table>
+@*@await Html.PartialAsync("DashboardMonth")*@
+
+@await Component.InvokeAsync("Dashboard")
+<div class="table-responsive" style="max-height: 300px; border-radius:20px;">
+
+	<table class="table table-condensed table-hover">
+		<thead>
+			<tr>
+				<th>
+					@Html.DisplayNameFor(model => model.IdProdutoNavigation.Nome)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IdClienteNavigation.Nome)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Valor)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.Quantidade)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.IdProdutoNavigation.Valor)
+				</th>
+				<th>
+                    @Html.DisplayNameFor(model => model.IdFuncionarioNavigation.Nome)
+				</th>
+				<th>
+					@Html.DisplayNameFor(model => model.DataVenda)
+				</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>
+                        @Html.DisplayFor(modelItem => item.IdProdutoNavigation.Nome)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IdClienteNavigation.Nome)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Valor)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.Quantidade)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.IdProdutoNavigation.Valor)
+					</td>
+					<td>
+                        @Html.DisplayFor(modelItem => item.IdFuncionarioNavigation.Nome)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.DataVenda)
+					</td>
+
+				</tr>
+			}
+		</tbody>
+	</table>
+
+</div>
+
+
+
+

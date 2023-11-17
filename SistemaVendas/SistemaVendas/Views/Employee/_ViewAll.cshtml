@@ -70,27 +70,27 @@ else if (TempData["ErrorMessage"] != null)
     </form>
 
 </div>
+<hr />
+
+<div class="table-responsive" style="border-radius: 20px 20px 45px 45px;">
 
 
-<div class="table-responsive">
 
-
-
-    <table class="table table-condensed table-hover" id="depTable">
+    <table class="table table-condensed table-hover" >
     <thead>
         <tr>
 
             <th>
-                @Html.DisplayNameFor(model => model.nome)
+                @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.telefone)
+                @Html.DisplayNameFor(model => model.Telefone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.email)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.turno)
+                @Html.DisplayNameFor(model => model.Turno)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataContratado)
@@ -103,16 +103,16 @@ else if (TempData["ErrorMessage"] != null)
             <tr style="cursor:pointer;" onclick="showInPopup('@Url.Action("UpdateEmployee","Employee",new {id=item.IdFunc},Context.Request.Scheme)','Update Employee')">
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.nome)
+                    @Html.DisplayFor(modelItem => item.Nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.telefone)
+                    @Html.DisplayFor(modelItem => item.Telefone)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.email)
+                    @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.turno)
+                    @Html.DisplayFor(modelItem => item.Turno)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DataContratado)

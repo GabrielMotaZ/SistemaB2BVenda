@@ -6,5 +6,8 @@ namespace SistemaVendas.Application.Interface
     public interface ISaleAppService : IAppServiceBase<Sale>
     {
         IEnumerable<SaleViewModel> ListSales();
-    }
+
+        
+
+	}
 }

@@ -18,38 +18,40 @@ namespace SistemaVendas.ViewModels
 
 
         [Required, Display(Name = "Nome")]
-        public string nome { get; set; }
+        public string Nome { get; set; }
 
 
         [Required, Display(Name = "Sexo")]
-        public string sexo { get; set; }
+        public string Sexo { get; set; }
 
 
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "somente números.")]
         [Required, Display(Name = "CPF")]
-        public string cpf { get; set; }
+        public string Cpf { get; set; }
 
 
         [Required, Display(Name = "Endereço")]
-        public string endereco { get; set; }
+        public string Endereco { get; set; }
 
 
         [RegularExpression(@"^[0-9]*$", ErrorMessage = "somente números.")]
         [Required, Display(Name = "Telefone")]
-        public string telefone { get; set; }
+        public string Telefone { get; set; }
 
         [EmailAddress(ErrorMessage = "Por favor, insira um endereço de e-mail válido.")]
         [Required, Display(Name = "Email")]
-        public string email { get; set; }
+        public string Email { get; set; }
 
 
         [Required, Display(Name = "Turno")]
-        public string turno { get; set; }
+        public string Turno { get; set; }
 
 		
 		[DataType(DataType.Date)]
 		[Required, Display(Name = "DataContratado")]
 		public DateTime DataContratado { get; set; }
+
+        public virtual ICollection<SaleViewModel> Sales { get; set; } = new List<SaleViewModel>();
 
     }
 }

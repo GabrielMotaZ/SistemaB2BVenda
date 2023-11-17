@@ -37,9 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SistemaVendas.Application\SistemaVendas.Application.csproj" />
-    <ProjectReference Include="..\SistemaVendas.Domain\SistemaVendas.Domain.csproj" />
-    <ProjectReference Include="..\SistemaVendas.Infra.Data\SistemaVendas.Infra.Data.csproj" />
+    <ProjectReference Include="..\SistemaVendas.IoC\SistemaVendas.IoC.csproj" />
   </ItemGroup>
 
 </Project>

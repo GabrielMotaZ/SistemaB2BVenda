@@ -1,0 +1,168 @@
+﻿@model IEnumerable<SistemaVendas.Application.ViewModels.DashboardViewModel>
+
+@{
+}
+
+
+
+<div class="container">
+
+
+	@*<div class="grid">*@
+	<div id="container" style="position: relative; z-index: -1;">
+	</div>
+	@*</div>*@
+
+	@*<div class="grid">*@
+	<div id="tha">
+	</div>
+	@*</div>*@
+
+
+</div>
+
+
+<script>
+
+	const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+	// Função para obter o nome do dia da semana a partir de uma data
+	function getDayNameFromDate(dateString) {
+		const date = new Date(dateString);
+		const dayIndex = date.getDay();
+		return weekDays[dayIndex];
+	}
+
+	anychart.onDocumentReady(function () {
+
+		// set chart theme
+		//anychart.theme('darkProvence');
+		// create line chart
+		var chart = anychart.line();
+
+		// set chart padding
+		chart.padding([10, 20, 5, 20]);
+
+		// turn on chart animation
+		chart.animation(true);
+
+		// turn on the crosshair
+		chart.crosshair(true);
+
+		// set chart title text settings
+		chart.title('Sales during the Week');
+
+		// set y axis title
+		//chart.yAxis().title('Activity occurrences');
+
+		// create logarithmic scale
+		var logScale = anychart.scales.log();
+		logScale.minimum(1).maximum(45000);
+
+		// set scale for the chart, this scale will be used in all scale dependent entries such axes, grids, etc
+		chart.yScale(logScale);
+
+
+		var dataSet = anychart.data.set([
+
+
+			@foreach (var item in Model)
+			{
+				@:['@item.DiaSemana', parseFloat('@item.Valor'.replace(',', '.'))],
+
+			}
+
+		]);
+
+
+		// map data for the first series,take value from first column of data set
+		var firstSeriesData = dataSet.mapAs({
+			x: 0,
+			value: 1
+		});
+
+		// map data for the second series,take value from second column of data set
+		var secondSeriesData = dataSet.mapAs({
+			x: 0,
+			value: 2
+		});
+
+		// map data for the third series, take x from the zero column and value from the third column of data set
+		var thirdSeriesData = dataSet.mapAs({
+			x: 0,
+			value: 3
+		});
+
+		// temp variable to store series instance
+		var series;
+
+		// setup first series
+		series = chart.line(firstSeriesData);
+		series.name('Sales');
+		// enable series data labels
+		series.labels().enabled(true).anchor('left-bottom').padding(5);
+		// enable series markers
+		series.markers(true);
+
+		//// setup second series
+		//series = chart.line(secondSeriesData);
+		//series.name('Comment blog posts');
+		//// enable series data labels
+		//series.labels().enabled(true).anchor('left-bottom').padding(5);
+		//// enable series markers
+		//series.markers(true);
+
+		//// setup third series
+		//series = chart.line(thirdSeriesData);
+		//series.name('Email delivery support');
+		//// enable series data labels
+		//series.labels().enabled(true).anchor('left-bottom').padding(5);
+		//// enable series markers
+		//series.markers(true);
+
+		// turn the legend on
+		chart.legend().enabled(true).fontSize(13).padding([0, 0, 20, 0]);
+
+
+
+		// set container for the chart and define padding
+		chart.container('container');
+
+		var elemento = document.querySelector('.anychart-credits-text');
+
+
+		elemento.style.display = 'none';
+		// initiate chart drawing
+		chart.draw();
+	});
+
+
+
+	anychart.onDocumentReady(function () {
+		// set chart theme
+		//anychart.theme('darkProvence');
+		// create pie chart with passed data
+		var chart = anychart.pie3d([
+		
+				@foreach (var item in Model)
+				{
+					@:['@item.DiaSemana', parseFloat('@item.Valor'.replace(',', '.'))],
+
+				}
+		]);
+
+		// set chart title text settings
+		chart
+			.title('percentage of sales during the week')
+			// set chart radius
+			.radius('43%');
+
+		// set container id for the chart
+		chart.container('tha');
+		// initiate chart drawing
+		chart.draw();
+	});
+
+
+
+</script>

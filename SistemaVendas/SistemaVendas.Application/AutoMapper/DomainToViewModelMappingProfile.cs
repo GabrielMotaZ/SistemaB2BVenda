@@ -28,6 +28,7 @@ namespace SistemaVendas.AutoMapper
             CreateMap<MenuTopo, MenuTopoViewModel>().ReverseMap();
             CreateMap<Employee, EmployeeViewModel>().ReverseMap();
             CreateMap<Client, ClientViewModel>().ReverseMap();
+            CreateMap<Dashboard, DashboardViewModel>().ReverseMap();
         }
     }
 }

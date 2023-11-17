@@ -63,9 +63,13 @@ public partial class SistemaContext : DbContext
             entity.Property(e => e.IdAcessos).HasColumnName("idAcessos");
             entity.Property(e => e.IdEmployee).HasColumnName("idEmployee");
             entity.Property(e => e.Nome)
-                .HasMaxLength(20)
+				.HasMaxLength(20)
+				.IsUnicode(false)
+				.HasColumnName("nome");
+			entity.Property(e => e.Email)
+                .HasMaxLength(100)
                 .IsUnicode(false)
-                .HasColumnName("nome");
+                .HasColumnName("email");
             entity.Property(e => e.Senha)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -222,6 +226,9 @@ public partial class SistemaContext : DbContext
                 .HasColumnName("valor");
         });
 
+
+
+
         modelBuilder.Entity<Sale>(entity =>
         {
             entity.HasKey(e => e.IdVendas).HasName("PK__vendas__345CC6B646E692E8");
@@ -232,11 +239,8 @@ public partial class SistemaContext : DbContext
             entity.Property(e => e.DataVenda)
                 .HasColumnType("datetime")
                 .HasColumnName("data_venda");
-            entity.Property(e => e.Funcionario)
-                .HasMaxLength(50)
-                .IsUnicode(false)
-                .HasColumnName("funcionario");
             entity.Property(e => e.IdCliente).HasColumnName("id_cliente");
+            entity.Property(e => e.IdFuncionario).HasColumnName("idFuncionario");
             entity.Property(e => e.IdProduto).HasColumnName("id_produto");
             entity.Property(e => e.NumVendas).HasColumnName("num_vendas");
             entity.Property(e => e.Quantidade).HasColumnName("quantidade");
@@ -249,12 +253,61 @@ public partial class SistemaContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__vendas__id_clien__3118447E");
 
+            entity.HasOne(d => d.IdFuncionarioNavigation).WithMany(p => p.Sales)
+                .HasForeignKey(d => d.IdFuncionario)
+                .HasConstraintName("Fk_employeeSale");
 
             entity.HasOne(d => d.IdProdutoNavigation).WithMany(p => p.Sales)
                 .HasForeignKey(d => d.IdProduto)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__vendas__data_ven__30242045");
         });
+
+
+
+
+
+        //modelBuilder.Entity<Sale>(entity =>
+        //{
+        //    entity.HasKey(e => e.IdVendas).HasName("PK__vendas__345CC6B646E692E8");
+
+        //    entity.ToTable("Sale");
+
+        //    entity.Property(e => e.IdVendas).HasColumnName("id_vendas");
+        //    entity.Property(e => e.DataVenda)
+        //        .HasColumnType("datetime")
+        //        .HasColumnName("data_venda");
+        //    //entity.Property(e => e.funcionario)
+        //    //    .HasMaxLength(50)
+        //    //    .IsUnicode(false)
+        //    //    .HasColumnName("funcionario");
+        //    entity.Property(e => e.IdCliente).HasColumnName("id_cliente");
+        //    entity.Property(e => e.IdProduto).HasColumnName("id_produto");
+        //    //entity.Property(e => e.idFuncionario).HasColumnName("idFuncionario");
+        //    entity.Property(e => e.NumVendas).HasColumnName("num_vendas");
+        //    entity.Property(e => e.Quantidade).HasColumnName("quantidade");
+        //    entity.Property(e => e.Valor)
+        //        .HasColumnType("decimal(18, 2)")
+        //        .HasColumnName("valor");
+
+
+        //    //entity.HasOne(d => d.IdFuncionarioNavigation).WithMany(p => p.Sales)
+        //    //    .HasForeignKey(d => d.IdCliente)
+        //    //    .OnDelete(DeleteBehavior.ClientSetNull)
+        //    //    .HasConstraintName("Fk_employeeSale");
+
+
+        //    entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Sales)
+        //        .HasForeignKey(d => d.IdCliente)
+        //        .OnDelete(DeleteBehavior.ClientSetNull)
+        //        .HasConstraintName("FK__vendas__id_clien__3118447E");
+
+
+        //    entity.HasOne(d => d.IdProdutoNavigation).WithMany(p => p.Sales)
+        //        .HasForeignKey(d => d.IdProduto)
+        //        .OnDelete(DeleteBehavior.ClientSetNull)
+        //        .HasConstraintName("FK__vendas__data_ven__30242045");
+        //});
 
 
 

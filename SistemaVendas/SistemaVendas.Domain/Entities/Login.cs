@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper.Configuration.Annotations;
+using System;
 using System.Collections.Generic;
 
 namespace SistemaVendas.Domain.Entities;
@@ -7,11 +8,13 @@ public  class Login
 {
     public int IdLogin { get; set; }
 
-    public string? Nome { get; set; }
+    public string Nome { get; set; }
+    public string? Email { get; set; }
 
     public string? Senha { get; set; }
 
-    public DateTime? Data { get; set; }
+ 
+	public DateTime? Data { get; set; }
 
     public int? IdAcessos { get; set; }
 

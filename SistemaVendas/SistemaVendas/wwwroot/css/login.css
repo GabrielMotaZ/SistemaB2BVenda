@@ -1,15 +1,11 @@
-@keyframes rotate {
-    from {
-        transform: rotateY(0deg);
-    }
 
-    to {
-        transform: rotateY(360deg);
-    }
-}
 
 .body {
-    /* background-color: #6e6e6e; */
+    /*background-color: #6e6e6e;*/
+    background-image: url('../Img/plataforma-de-e-commerce-b2b-1024x551.png');
+    background-size: cover;
+   /* background-repeat: no-repeat;
+    background-position: center;*/
 }
 
 .iconLogo {
@@ -33,7 +29,7 @@
     width: 350px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
+    margin-top: 10%;
     padding-top: 4%;
     padding-bottom: 4%;
     border-radius: 10px;

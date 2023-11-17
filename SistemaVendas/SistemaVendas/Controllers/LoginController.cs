@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using SistemaVendas.Application.Interface;
+using SistemaVendas.Contexto;
+using SistemaVendas.Domain.Entities;
 using SistemaVendas.ViewModels;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace SistemaVendas.Controllers
 {
@@ -9,9 +13,12 @@ namespace SistemaVendas.Controllers
 
         private readonly ILoginAppService _loginAppService;
 
-        public LoginController(ILoginAppService loginAppService)
+        private readonly IEmailAppService _emailAppService;
+
+        public LoginController(ILoginAppService loginAppService, IEmailAppService emailAppService)
         {
             _loginAppService = loginAppService;
+            _emailAppService = emailAppService;
         }
 
         // GET: LoginController
@@ -39,47 +46,89 @@ namespace SistemaVendas.Controllers
         // POST: LoginController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult QueryLogin(LoginViewModel loginViewModel)
+        public IActionResult QueryLogin(string email, string? Senha)
         {
-            try
+			try
             {
-                if (ModelState.IsValid)
-                {
-                   var user = _loginAppService.QueryLogin(loginViewModel);
-                }
-
+                    var user = _loginAppService.GetLogin(email, Senha);
+                
                 return RedirectToRoute(new { controller = "Main", action = "ListSales" /*id = 1 */});
-            }
-            catch(Exception ex)
+			}
+			catch (InvalidOperationException te)
+			{
+				
+				TempData["InfoMessage"] = te.Message;
+				return RedirectToAction("Login");
+			}
+            catch(NullReferenceException ex) 
             {
-                TempData["InfoMessage"] = ex.Message;
-                return RedirectToAction("Login");
-            }
+			
+				TempData["InfoMessage"] = ex.Message;
+				return RedirectToAction("UpdatLogin", new { Email = email });
+                
+			}
+	
         }
 
 
  
         // GET: LoginController/Edit/5
-        public ActionResult UpdatLogin(int? id)
+        public IActionResult UpdatLogin(string email)
         {
-			
-			return View();
-        }
+            var teste = new LoginViewModel();
+            try
+            {
+				var login = _loginAppService.GetLogin(email, null);
+
+				    _emailAppService.EmailPassword(login.Email, login.Nome);
+
+                teste = login;
+				
+				return View(login);
+			}
+            catch (InvalidOperationException ex)
+            {
+				TempData.Clear();
+				TempData["InfoMessage"] = ex.Message;
+				return RedirectToAction("Login");
+			}
+			catch (NullReferenceException ex)
+			{
+
+				TempData["InfoMessage"] = ex.Message;
+				return View(teste);
+
+			}
+
+
+		}
 
         // POST: LoginController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdatLogin(int id, IFormCollection collection)
+        public ActionResult UpdatLogin(int id, LoginViewModel loginViewModel)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+               
+                _loginAppService.UpdateLogin(id, loginViewModel);
+
+                return RedirectToAction("Login");
             }
-            catch
+			catch (ArgumentNullException te)
+			{
+		
+				TempData["InfoMessage"] = te.Message;
+				return RedirectToAction("UpdatLogin");
+			}
+            catch (InvalidOperationException ex)
             {
-                return View();
-            }
-        }
+				
+				TempData["InfoMessage"] = ex.Message;
+				return RedirectToAction("UpdatLogin", new { Email = loginViewModel.Email });
+			}
+         
+		}
 
         // GET: LoginController/Delete/5
         public ActionResult Delete(int id)

@@ -5,23 +5,25 @@
 	Layout = "_Layout";
 }
 
-
-
-
 <div class="formConteiner">
-	<form asp-action="QueryLogin">
+	<form asp-action="QueryLogin" asp-route-id="@Model" id="myForm">
 
 		<div class="loginPassword">
 			<div class="login">
-				<label></label>
-				<input asp-for="Nome" type="text" class="inputLogin" placeholder="Usuario">
-				<span asp-validation-for="Nome" class="text-danger"></span>
+				<input asp-for="Email" id="nome" type="text" class="inputLogin" placeholder="Email" name="Email">
+				<div style="text-align: center">
+					<span asp-validation-for="Email" class="text-danger" id="email-error"></span>
+				</div>
 			</div>
 
 			<div class="password">
 				<label></label>
 				<input asp-for="Senha" type="password" class="inputLogin" placeholder="password">
-				<span asp-validation-for="Senha" class="text-danger"></span>
+
+				<div style="text-align: center">
+					<span asp-validation-for="Senha" class="text-danger"></span>
+				</div>
+
 			</div>
 
 			@if (TempData["InfoMessage"] != null)
@@ -29,31 +31,41 @@
 				<p class="alert text-center" style="color: darkred;">@TempData["InfoMessage"] </p>
 			}
 
-
-
-
-			<div class="row">
-				<div class="col-sm">
-					<div class="form-group" style="text-align:center;">
-						<a style="color:darkred;" href="@Url.Action("UpdatLogin","Login")"><i>Alterar Senha!</i></a>
-					</div>
-				</div>
-			</div>
-
-			@*<button type="submit" value="EnterLogin" class="btnLogin">Login</button>*@
-
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group" style="text-align:center;">
-						<input type="submit" value="Enter" class="btn btn-primary btn-block" style="width:50%; margin-top: 20px;" />
+						<input type="submit" value="Enter" class="btn btn-primary btn-block" style="width:50%; margin-top: 15px;" />
 
 					</div>
 				</div>
 			</div>
 
+			<div class="row" style="padding:10px;">
+				<div class="col-sm">
+					<div class="form-group" style="text-align:center;">
+						<a><i type="submit" style="color:darkred;" onclick="redirectToUpdateLogin()">Alte password!</i></a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</form>
 </div>
+
+
+<script>
+
+	function redirectToUpdateLogin() {
+		var email = document.getElementById('nome').value;
+
+		if (email === '') {
+			document.getElementById('email-error').innerText = "O campo Email é obrigatório.";
+		} else {
+			window.location.href = '@Url.Action("UpdatLogin", "Login")?email=' + email;
+		}
+	}
+
+</script>
+
 
 @section Scripts {
 	@{

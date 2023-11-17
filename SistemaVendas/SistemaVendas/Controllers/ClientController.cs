@@ -68,6 +68,15 @@ namespace SistemaVendas.Controllers
         public ActionResult UpdatClient(int id)
         {
             var client = _clientAppService.getClientId(id);
+
+            var sexo = new List<SelectListItem>
+            {
+                new SelectListItem {Value =client.Sexo, Text = client.Sexo},
+                new SelectListItem {Value ="F", Text = "F"},
+                new SelectListItem {Value ="M", Text = "M"},
+                new SelectListItem {Value ="OU", Text = "OU"}
+            };
+            ViewBag.sexo = sexo;
             return View(client);
         }
 

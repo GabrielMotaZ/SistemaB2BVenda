@@ -9,9 +9,8 @@ namespace SistemaVendas.Domain.Interfaces.Services
     public interface IEmailService
     {
 
-        void SendEmail(string to, string nome ,string senha);
+        void EmailPassword(string to, string nome ,string senha);
 
-        void SendEmailUpdate();
-
+ 
 	}
 }

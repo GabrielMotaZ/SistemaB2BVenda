@@ -1,12 +1,12 @@
-﻿
-
-
-using SistemaVendas.Domain.Entities;
+﻿using SistemaVendas.Domain.Entities;
 
 namespace SistemaVendas.Domain.Interfaces.Services
 {
     public interface ILoginService : IServiceBase<Login>
     {
-        IEnumerable<Login> QueryLogin(Login login);
-    }
+        Login GetLogin(string email, string? password);
+
+		string geratePassword();
+
+	}
 }

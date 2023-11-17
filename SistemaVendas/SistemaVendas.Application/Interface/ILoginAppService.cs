@@ -6,11 +6,15 @@ namespace SistemaVendas.Application.Interface
     public interface ILoginAppService : IAppServiceBase<Login>
     {
 
-        IEnumerable<LoginViewModel> QueryLogin(LoginViewModel login);
+        LoginViewModel GetLogin(string email, string? password);
 
-        void CreateLogin(LoginViewModel loginViewModel);
+		LoginViewModel GetLoginId(int id);
 
-        string geratePassword();
+		void CreateLogin(LoginViewModel loginViewModel);
+
+        void UpdateLogin(int id, LoginViewModel loginViewModel);
+      
+       
      
     }
 }
