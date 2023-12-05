@@ -50,7 +50,7 @@ namespace SistemaVendas.Controllers
         // POST: ClientController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreatClient(ClientViewModel collection)
+        public ActionResult CreateClient(ClientViewModel collection)
         {
             try
             {
