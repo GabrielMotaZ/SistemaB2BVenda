@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using SistemaVendas.Application.Interface;
+using SistemaVendas.Application.ViewModels;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Services;
-using SistemaVendas.ViewModels;
 
 namespace SistemaVendas.Application
 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using SistemaVendas.Application.Interface;
+using SistemaVendas.Application.ViewModels;
 using SistemaVendas.Contexto;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.ViewModels;

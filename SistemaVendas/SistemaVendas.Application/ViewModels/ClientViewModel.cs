@@ -21,14 +21,15 @@ namespace SistemaVendas.Application.ViewModels
         public string Sexo { get; set; }
 
 
+        [MaxLength(14), MinLength(14)]
         [Required, Display(Name = "Cpf")]
         public string Cpf { get; set; }
         
         
         [Required, Display(Name = "Endereco")]
         public string? Endereco { get; set; }
-       
-        
+
+        [MaxLength(16), MinLength(15)]
         [Required, Display(Name = "Telefone")]
         public string? Telefone { get; set; }
        

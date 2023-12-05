@@ -1,7 +1,7 @@
-﻿@model SistemaVendas.ViewModels.EmployeeViewModel
+﻿@model SistemaVendas.Application.ViewModels.EmployeeViewModel
 
 @{
-    Layout = null;
+	ViewData["Title"] = "UpdateEmployee";
 }
 
 <div class="container">
@@ -33,7 +33,7 @@
 
 						<div class="form-group">
 							<label asp-for="Cpf" class="control-label"></label>
-							<input asp-for="Cpf" class="form-control" name="Cpf" />
+							<input asp-for="Cpf" class="form-control" name="Cpf" oninput="mascaras(this)" />
 							<span asp-validation-for="Cpf" class="text-danger"></span>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 
 						<div class="form-group">
 							<label asp-for="Telefone" class="control-label"></label>
-							<input asp-for="Telefone" class="form-control" name="Telefone" />
+							<input asp-for="Telefone" class="form-control" name="Telefone" oninput="mascaras(this)" />
 							<span asp-validation-for="Telefone" class="text-danger"></span>
 						</div>
 					</div>
@@ -103,8 +103,8 @@
 </div>
 </div>
 
-
-<script>
+							@*POR ALGUM MOTIVO NÃO É MAIS NECESSARIO O USO DO CÓDIGO ABAIXO*@
+@*<script>
 	$(document).ready(function () {
 		$("#myForm").validate({
 			rules: {
@@ -182,7 +182,7 @@
 		}
 	});
 
-</script>
+</script>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

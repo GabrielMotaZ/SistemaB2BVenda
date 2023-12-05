@@ -36,6 +36,7 @@ namespace SistemaVendas.IoC
 			services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 			services.AddScoped<IClientRepository, ClientRepository>();
 			services.AddScoped<IEmailRepository, EmailRepository>();
+			services.AddScoped<ICompanyRepository, CompanyRepository>();
 			services.AddScoped<IDashboardRepository, DashboardRepository>(); 
 
 
@@ -48,6 +49,7 @@ namespace SistemaVendas.IoC
 			services.AddScoped<IEmployeeAppService, EmployeeAppService>();
 			services.AddScoped<IClientAppService, ClientAppService>();
 			services.AddScoped<IEmailAppService, EmailAppService>();
+			services.AddScoped<ICompanyAppService, CompanyAppService>();
 			services.AddScoped<IDashboardAppService, DashboardAppService>();
 
 			// Services.
@@ -59,6 +61,7 @@ namespace SistemaVendas.IoC
 			services.AddScoped<IEmployeeService, EmployeeService>();
 			services.AddScoped<IClientService, ClientService>();
 			services.AddScoped<IEmailService, EmailService>();
+			services.AddScoped<ICompanyService, CompanyService>();
 			services.AddScoped<IDashboardService, DashboardService>();
 
 

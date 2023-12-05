@@ -20,9 +20,7 @@
     padding: 20px;
 }
 
-/*body {
-    background-color: #333333;
-}*/
+
 
 .body .header {
     font-size: 14px;
@@ -120,6 +118,7 @@
 
 /* MENU LATERAL */
 .aLateral,
+.aLateralSemSub,
 .liSublateral {
     text-decoration: none;
     color: black;
@@ -196,11 +195,18 @@
     border-radius: 0px 20px 0px 20px;
 }
 
-.aLateral,
-.liSublateral {
-    display: block;
-    /* color: white; */
-    color: black;
+
+
+
+
+
+.aLateralSemSub:hover {
+    background-color: rgba(16, 16, 16, .5);
+    
+    border-radius: 10px;
+    color: white;
+    z-index: 1;
+    border-radius: 0px 20px 0px 20px; /*ALTERNATIVA*/
 }
 
     .aLateral:hover,
@@ -235,12 +241,18 @@
         .menulateral .lilateral .aLateral,
         .liSublateral {
             text-decoration: none;
-            padding: 6px 20px;
+            padding: 4px 20px;
             display: block;
         }
 
+
+.aLateralSemSub {
+    padding: 4px 20px;
+    display: block;
+}
+
 .lilateral {
-    /*background-color:red;*/
+    /* background-color:red;*/
 
     margin-left: -30px;
 }
@@ -265,8 +277,6 @@
 .menulateral .lilateral:hover .ulSublateral,
 .menulateral .lilateral.over .ulSublateral {
     display: block;
-    /* background-color: rgba(16, 16, 16, .5); */
-    /* background: rgba(238, 238, 238, 0.8); */
     border: 1px solid;
     background-color: #EEEEEE;
     border-radius: 0px 21px 0px 21px;

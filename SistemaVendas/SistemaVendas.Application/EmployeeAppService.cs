@@ -1,19 +1,15 @@
 ﻿using AutoMapper;
 using SistemaVendas.Application.Interface;
+using SistemaVendas.Application.ViewModels;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Services;
-using SistemaVendas.ViewModels;
-using System;
-using System.Text;
+
 
 namespace SistemaVendas.Application
 {
     public class EmployeeAppService : AppServiceBase<Employee>, IEmployeeAppService
     {
         private readonly IEmployeeService _employeeService;
-
-        //CORRIGIR -- Verificar essa injeção
-        //private readonly ILoginAppService _loginAppService;
 
         private readonly ILoginService _loginService;
 
@@ -58,17 +54,15 @@ namespace SistemaVendas.Application
         {
             
 
-            var createMap = _mapper.Map<Employee>(employeeViewModel);
+            var createMap       = _mapper.Map<Employee>(employeeViewModel);
+
+            createMap.Cpf       = createMap.Cpf.Replace(".", "").Replace("-", "");
+            createMap.Telefone  = createMap.Telefone.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "");
 
             _employeeService.Add(createMap);
 
             var senha = _loginService.geratePassword();
 
-           
-            //login.Nome          = createMap.Nome;
-            //login.Senha         = senha;
-            //login.Data          = null;
-            //login.IdEmployee    = createMap.IdFunc;
 
            var login = (new LoginViewModel
             {
@@ -93,7 +87,10 @@ namespace SistemaVendas.Application
         {
            employeeViewModel.IdFunc = id;
 
-           var emp = _mapper.Map<Employee>(employeeViewModel);
+			employeeViewModel.Cpf           = employeeViewModel.Cpf.Replace(".", "").Replace("-", "");
+			employeeViewModel.Telefone      = employeeViewModel.Telefone.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "");
+
+			var emp = _mapper.Map<Employee>(employeeViewModel);
 
             _employeeService.Update(emp);
         }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SistemaVendas.ViewModels.EmployeeViewModel>
+﻿@model IEnumerable<SistemaVendas.Application.ViewModels.EmployeeViewModel>
 
 
 <h2>Employees</h2>
@@ -125,9 +125,6 @@ else if (TempData["ErrorMessage"] != null)
 
 
 </div>
-
-
-@*@await Component.InvokeAsync("CadastroModal")*@
 
 @section Scripts {
     @{

@@ -1,4 +1,4 @@
-﻿@model SistemaVendas.ViewModels.EmployeeViewModel
+﻿@model SistemaVendas.Application.ViewModels.EmployeeViewModel
 
 @{
 	ViewData["Title"] = "CreateEmployee";
@@ -22,7 +22,7 @@
 						<input asp-for="Nome" class="form-control" name="Nome"/>
 						<span asp-validation-for="Nome" class="text-danger"></span>
 					</div>
-				</div>
+				</div>	
 
 				<div class="col-sm">
 					<div class="form-group col-md-5">
@@ -33,11 +33,11 @@
 					</div>
 				</div>
 
-				<div class="col-sm">
+				<div class="col-sm-5">
 
 					<div class="form-group">
 						<label asp-for="Cpf" class="control-label"></label>
-						<input asp-for="Cpf" class="form-control" name="Cpf" />
+							<input asp-for="Cpf" class="form-control" name="Cpf" oninput="mascaras(this)" />
 						<span asp-validation-for="Cpf" class="text-danger"></span>
 					</div>
 				</div>
@@ -72,7 +72,7 @@
 
 					<div class="form-group">
 						<label asp-for="Telefone" class="control-label"></label>
-						<input asp-for="Telefone" class="form-control" name="Telefone" />
+							<input asp-for="Telefone" class="form-control" name="Telefone" oninput="mascaras(this)" />
 						<span asp-validation-for="Telefone" class="text-danger"></span>
 					</div>
 				</div>
@@ -87,13 +87,25 @@
 
 				</div>
 
-				<div class="col-sm">
+				@*<div class="col-sm">
 					<div class="form-group">
 						<label asp-for="DataContratado" class="control-label"></label>
 							<input asp-for="DataContratado" class="form-control" name="DataContratado" />
 						<span asp-validation-for="DataContratado" class="text-danger"></span>
 					</div>
-				</div>
+				</div>*@
+
+
+					<div class="row">
+						<div class="col-sm">
+							<div class="form-group col-md-5">
+								<label class="control-label">Comapny</label>
+							
+								<select asp-items="@ViewBag.company" class="form-control" name="Company"></select>
+								@*<span asp-validation-for="Sexo" class="text-danger"></span>*@
+							</div>
+						</div>
+					</div>
 			</div>
 
 			<hr/>

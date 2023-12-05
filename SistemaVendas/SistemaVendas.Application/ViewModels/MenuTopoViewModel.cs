@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SistemaVendas.ViewModels
+namespace SistemaVendas.Application.ViewModels
 {
     public class MenuTopoViewModel
     {

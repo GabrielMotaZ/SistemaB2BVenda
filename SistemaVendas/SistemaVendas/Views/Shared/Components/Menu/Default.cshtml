@@ -14,19 +14,35 @@
 
             <li class="lilateral">
 
+               
+
+                @if (menu.SubMenu.Count() == 0)
+                {
+                    <a >@Html.ActionLink(menu.Nome,menu.Action,menu.Controller, null, new {@class ="aLateralSemSub" })</a>
+                }
+                else
+                {
+                    
                 <a class="aLateral" href="#">@menu.Nome</a>
+               
+                    
 
-                <ul class="ulSublateral">
+                    <ul class="ulSublateral">
 
-                    @if(menu.SubMenu != null){
-
-                        @foreach (var sub in menu.SubMenu)
+                        @if (menu.SubMenu.Count() != 0)
                         {
-                            
-                            <li><a>@Html.ActionLink(sub.Nome,sub.Action,sub.Controller, null, new {@class ="liSublateral" }) </a></li>
+
+                            @foreach (var sub in menu.SubMenu)
+                            {
+
+                                <li><a>@Html.ActionLink(sub.Nome,sub.Action,sub.Controller, null, new {@class ="liSublateral" }) </a></li>
+                            }
                         }
-                    }
-                </ul>
+                    </ul>
+                }
+
+
+               
 
             </li>
 

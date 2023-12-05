@@ -1,0 +1,137 @@
+﻿@model SistemaVendas.Application.ViewModels.CompanyViewModel
+
+@{
+    ViewData["Title"] = "CreateCompany";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="CreateCompany">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Cnpj" class="control-label"></label>
+                        <input asp-for="Cnpj" class="form-control" oninput="mascaras(this)" />
+                        <span asp-validation-for="Cnpj" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+             
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="InscricaoEstadual" class="control-label"></label>
+                        <input asp-for="InscricaoEstadual" class="form-control" oninput="mascaras(this)" />
+                        <span asp-validation-for="InscricaoEstadual" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Telefone" class="control-label"></label>
+                        <input asp-for="Telefone" class="form-control" oninput="mascaras(this)" />
+                        <span asp-validation-for="Telefone" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Rua" class="control-label"></label>
+                        <input asp-for="Rua" class="form-control" />
+                        <span asp-validation-for="Rua" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-3">
+                    <div class="form-group">
+                        <label asp-for="Numero" class="control-label"></label>
+                        <input asp-for="Numero" class="form-control" />
+                        <span asp-validation-for="Numero" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Bairro" class="control-label"></label>
+                        <input asp-for="Bairro" class="form-control" />
+                        <span asp-validation-for="Bairro" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label asp-for="Cidade" class="control-label"></label>
+                        <input asp-for="Cidade" class="form-control" />
+                        <span asp-validation-for="Cidade" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+                
+            <div class="row">
+      
+                <div class="col-2">
+                    <div class="form-group">
+                        <label asp-for="Uf" class="control-label"></label>
+                        <input asp-for="Uf" class="form-control" />
+                        <span asp-validation-for="Uf" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group">
+                        <label asp-for="Cep" class="control-label"></label>
+                        <input asp-for="Cep" class="form-control" oninput="mascaras(this)" />
+                        <span asp-validation-for="Cep" class="text-danger"></span>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary btn-block" />
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+          
+           
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

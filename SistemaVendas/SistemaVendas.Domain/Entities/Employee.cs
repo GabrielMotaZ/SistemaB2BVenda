@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
 
 namespace SistemaVendas.Domain.Entities;
 
@@ -21,6 +22,10 @@ public partial class Employee
     public string? Turno { get; set; }
 
     public DateTime? DataContratado { get; set; }
+
+    public virtual ICollection<CompanyGroup> CompanyGroups { get; set; } = new List<CompanyGroup>();
+
+    public virtual ICollection<Login> Logins { get; set; } = new List<Login>();
 
     public virtual ICollection<Sale> Sales { get; set; } = new List<Sale>();
 }

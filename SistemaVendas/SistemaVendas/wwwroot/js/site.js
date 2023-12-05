@@ -15,6 +15,85 @@ $(function () {
 
 
 
+
+function mascaras(campo) {
+
+
+
+    if (campo.name == "InscricaoEstadual") {
+        // Remove todos os caracteres não numéricos
+        var IE = campo.value.replace(/\D/g, '');
+
+
+        IE = IE.replace(/^(\d{3})(\d{3})(\d{3})(\d{3})/, "$1.$2.$3.$4");
+
+        // Atualiza o valor do campo
+        campo.value = IE;
+    }
+
+    if (campo.name == "Cnpj") {
+        var cnpj = campo.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        if (cnpj.length > 14) {
+            cnpj = cnpj.slice(0, 14);
+        }
+
+        campo.value = cnpj.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5');
+
+    }
+
+    if (campo.name == "Cep") {
+        // Remove todos os caracteres não numéricos
+        var cep = campo.value.replace(/\D/g, '');
+
+        // Aplica a máscara
+        if (cep.length > 5) {
+            cep = cep.replace(/^(\d{5})(\d{1,3})/, '$1-$2');
+        } else {
+            cep = cep.replace(/^(\d{0,5})/, '$1');
+        }
+
+        // Atualiza o valor do campo
+        campo.value = cep;
+    }
+
+    if (campo.name == "Telefone") {
+        // Remove todos os caracteres não numéricos
+        var tele = campo.value.replace(/\D/g, '');
+
+        if (tele.length > 10) {
+            tele = tele.replace(/^(\d{2})(\d{1})(\d{4})(\d{1,4})/, "($1) $2 $3-$4");
+        } else {
+            
+            tele = tele.replace(/^(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+        }
+        // Atualiza o valor do campo
+        campo.value = tele;
+    }
+
+
+    if (campo.name == "Cpf") {
+        // Remove todos os caracteres não numéricos
+        var cpf = campo.value.replace(/\D/g, '');
+
+
+        cpf = cpf.replace(/^(\d{3})(\d{3})(\d{3})(\d{1,2})/, "$1.$2.$3-$4");
+
+        // Atualiza o valor do campo
+        campo.value = cpf;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
 showInPopup = (url, title) => {
     $.ajax({
         type: "GET",

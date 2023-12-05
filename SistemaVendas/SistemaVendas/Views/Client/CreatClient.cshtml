@@ -36,7 +36,7 @@
 
                         <div class="form-group">
                             <label asp-for="Cpf" class="control-label"></label>
-                            <input asp-for="Cpf" class="form-control" name="Cpf" />
+                            <input asp-for="Cpf" class="form-control" name="Cpf" oninput="mascaras(this)" />
                             <span asp-validation-for="Cpf" class="text-danger"></span>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
 
                         <div class="form-group">
                             <label asp-for="Telefone" class="control-label"></label>
-                            <input asp-for="Telefone" class="form-control" name="Telefone" />
+                            <input asp-for="Telefone" class="form-control" name="Telefone" oninput="mascaras(this)" />
                             <span asp-validation-for="Telefone" class="text-danger"></span>
                         </div>
                     </div>

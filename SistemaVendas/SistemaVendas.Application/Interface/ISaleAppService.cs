@@ -1,5 +1,6 @@
-﻿using SistemaVendas.Domain.Entities;
-using SistemaVendas.ViewModels;
+﻿using SistemaVendas.Application.ViewModels;
+using SistemaVendas.Domain.Entities;
+
 
 namespace SistemaVendas.Application.Interface
 {

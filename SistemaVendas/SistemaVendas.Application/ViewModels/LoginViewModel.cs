@@ -1,7 +1,7 @@
 ﻿using SistemaVendas.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace SistemaVendas.ViewModels
+namespace SistemaVendas.Application.ViewModels
 {
     public class LoginViewModel
     {

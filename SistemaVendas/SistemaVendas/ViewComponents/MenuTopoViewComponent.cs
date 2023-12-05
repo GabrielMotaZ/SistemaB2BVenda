@@ -2,7 +2,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SistemaVendas.Application.Interface;
-using SistemaVendas.ViewModels;
+using SistemaVendas.Application.ViewModels;
+
 
 namespace SistemaVendas.Controllers
 {

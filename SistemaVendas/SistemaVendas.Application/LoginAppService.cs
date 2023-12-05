@@ -3,8 +3,7 @@ using Ardalis.GuardClauses;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Services;
-using SistemaVendas.ViewModels;
-using System.Text;
+using SistemaVendas.Application.ViewModels;
 
 namespace SistemaVendas.Application
 {

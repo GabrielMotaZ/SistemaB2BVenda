@@ -1,29 +1,37 @@
-﻿@model SistemaVendas.ViewModels.LoginViewModel
+﻿@model SistemaVendas.Application.ViewModels.LoginViewModel
 
 @{
 	ViewData["Title"] = "Login";
 	Layout = "_Layout";
 }
 
-<div class="formConteiner">
-	<form asp-action="QueryLogin" asp-route-id="@Model" id="myForm">
 
-		<div class="loginPassword">
-			<div class="login">
-				<input asp-for="Email" id="nome" type="text" class="inputLogin" placeholder="Email" name="Email">
-				<div style="text-align: center">
-					<span asp-validation-for="Email" class="text-danger" id="email-error"></span>
+
+<div class="container">
+
+	<div class="formConteiner">
+		<form asp-action="QueryLogin" asp-route-id="@Model" id="myForm">
+
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group">
+						<input asp-for="Email" id="nome" type="text" class="inputLogin" placeholder="Email" name="Email">
+						<div style="text-align: center">
+							<span asp-validation-for="Email" class="text-danger" id="email-error"></span>
+						</div>
+					</div>
 				</div>
 			</div>
 
-			<div class="password">
-				<label></label>
-				<input asp-for="Senha" type="password" class="inputLogin" placeholder="password">
-
-				<div style="text-align: center">
-					<span asp-validation-for="Senha" class="text-danger"></span>
+			<div class="row">
+				<div class="col-sm">
+					<div class="form-group">
+						<input asp-for="Senha" type="password" class="inputLogin" placeholder="password">
+						<div style="text-align: center">
+							<span asp-validation-for="Senha" class="text-danger"></span>
+						</div>
+					</div>
 				</div>
-
 			</div>
 
 			@if (TempData["InfoMessage"] != null)
@@ -32,7 +40,7 @@
 			}
 
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-sm">
 					<div class="form-group" style="text-align:center;">
 						<input type="submit" value="Enter" class="btn btn-primary btn-block" style="width:50%; margin-top: 15px;" />
 
@@ -47,9 +55,12 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</form>
+		</form>
+	</div>
+
 </div>
+
+
 
 
 <script>

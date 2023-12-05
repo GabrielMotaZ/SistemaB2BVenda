@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Application.ViewModels;
 using SistemaVendas.ViewModels;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SistemaVendas.Controllers
 {
 	public class EmployeeController : Controller
 	{
 		private readonly IEmployeeAppService _employeeAppService;
+		private readonly ICompanyAppService _companyAppService;
 
-		public EmployeeController(IEmployeeAppService employeeAppService)
+		public EmployeeController(IEmployeeAppService employeeAppService, ICompanyAppService companyAppService)
 		{
 			_employeeAppService = employeeAppService;
+			_companyAppService = companyAppService;
 		}
 
 		//[Authorize]
@@ -57,6 +60,18 @@ namespace SistemaVendas.Controllers
 			}
 			ViewBag.sexo = sexo;
 
+			var company = new List<SelectListItem>();
+			foreach (var comp in _companyAppService.GetCompany() )
+			{
+				company.Add(new SelectListItem
+				{
+					Text =		comp.Nome,
+					Value = ((int)comp.Id).ToString()
+				});
+			}
+			ViewBag.company = company;
+
+
 			return View();
 		}
 
@@ -72,12 +87,7 @@ namespace SistemaVendas.Controllers
 
                     TempData["SuccessMessage"] = "Salvo com sucesso!!";
                 }
-				else
-				{
-					throw new Exception("preencha todos os campos!!");
-				}
-
-                
+		        
                 return RedirectToAction("ListEmployee", "Employee");
 			}
 			catch (Exception ex)
