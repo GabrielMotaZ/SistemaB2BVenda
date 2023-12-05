@@ -34,7 +34,7 @@ namespace SistemaVendas.Controllers
         }
 
         // GET: ClientController/Create
-        public ActionResult CreatClient()
+        public ActionResult CreateClient()
         {
             var sexo = new List<SelectListItem>
             {
