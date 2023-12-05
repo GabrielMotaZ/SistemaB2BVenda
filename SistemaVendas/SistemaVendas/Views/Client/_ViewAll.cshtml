@@ -81,7 +81,7 @@
 		<tbody>
 			@foreach (var item in Model)
 			{
-				<tr style="cursor:pointer;" onclick="showInPopup('@Url.Action("UpdatClient","Client",new {id=item.Id_Cliente},Context.Request.Scheme)','Updat Client')">
+				<tr style="cursor:pointer;" onclick="showInPopup('@Url.Action("UpdateClient","Client",new {id=item.Id_Cliente},Context.Request.Scheme)','Updat Client')">
 
 					<td>
 						@Html.DisplayFor(modelItem => item.Nome)

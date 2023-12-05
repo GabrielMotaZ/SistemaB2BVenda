@@ -65,7 +65,7 @@ namespace SistemaVendas.Controllers
         }
 
         // GET: ClientController/Edit/5
-        public ActionResult UpdatClient(int id)
+        public ActionResult UpdateClient(int id)
         {
             var client = _clientAppService.getClientId(id);
 
@@ -83,7 +83,7 @@ namespace SistemaVendas.Controllers
         // POST: ClientController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdatClient(int id, ClientViewModel collection)
+        public ActionResult UpdateClient(int id, ClientViewModel collection)
         {
             try
             {
