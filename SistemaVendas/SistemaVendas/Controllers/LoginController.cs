@@ -65,7 +65,7 @@ namespace SistemaVendas.Controllers
             {
 			
 				TempData["InfoMessage"] = ex.Message;
-				return RedirectToAction("UpdatLogin", new { Email = email });
+				return RedirectToAction("UpdateLogin", new { Email = email });
                 
 			}
 	
@@ -74,7 +74,7 @@ namespace SistemaVendas.Controllers
 
  
         // GET: LoginController/Edit/5
-        public IActionResult UpdatLogin(string email)
+        public IActionResult UpdateLogin(string email)
         {
             var teste = new LoginViewModel();
             try
@@ -107,7 +107,7 @@ namespace SistemaVendas.Controllers
         // POST: LoginController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpdatLogin(int id, LoginViewModel loginViewModel)
+        public ActionResult UpdateLogin(int id, LoginViewModel loginViewModel)
         {
             try
             {
@@ -120,13 +120,13 @@ namespace SistemaVendas.Controllers
 			{
 		
 				TempData["InfoMessage"] = te.Message;
-				return RedirectToAction("UpdatLogin");
+				return RedirectToAction("UpdateLogin");
 			}
             catch (InvalidOperationException ex)
             {
 				
 				TempData["InfoMessage"] = ex.Message;
-				return RedirectToAction("UpdatLogin", new { Email = loginViewModel.Email });
+				return RedirectToAction("UpdateLogin", new { Email = loginViewModel.Email });
 			}
          
 		}

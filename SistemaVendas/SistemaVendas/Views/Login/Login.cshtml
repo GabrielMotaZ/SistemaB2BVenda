@@ -71,7 +71,7 @@
 		if (email === '') {
 			document.getElementById('email-error').innerText = "O campo Email é obrigatório.";
 		} else {
-			window.location.href = '@Url.Action("UpdatLogin", "Login")?email=' + email;
+			window.location.href = '@Url.Action("UpdateLogin", "Login")?email=' + email;
 		}
 	}
 
