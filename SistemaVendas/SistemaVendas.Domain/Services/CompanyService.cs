@@ -1,11 +1,6 @@
 ﻿using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Domain.Services
 {
@@ -14,7 +9,7 @@ namespace SistemaVendas.Domain.Services
         private readonly ICompanyRepository _companyRepository;
 
         public CompanyService(ICompanyRepository companyRepository)
-            :base(companyRepository)
+            : base(companyRepository)
         {
             _companyRepository = companyRepository;
         }

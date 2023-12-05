@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SistemaVendas.Application.Interface
+﻿namespace SistemaVendas.Application.Interface
 {
-    public interface IAppServiceBase<TEntity> where TEntity : class 
+    public interface IAppServiceBase<TEntity> where TEntity : class
     {
 
         void Add(TEntity obj);

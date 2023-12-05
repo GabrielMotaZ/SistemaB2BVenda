@@ -5,7 +5,7 @@ namespace SistemaVendas.Application.ViewModels
 {
     public class SaleViewModel
     {
-       
+
 
         public int IdVendas { get; set; }
 
@@ -21,8 +21,8 @@ namespace SistemaVendas.Application.ViewModels
 
         public int? IdFuncionario { get; set; }
 
-		[DataType(DataType.Date)]
-		public DateTime? DataVenda { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? DataVenda { get; set; }
 
         public virtual Client IdClienteNavigation { get; set; } = null!;
 

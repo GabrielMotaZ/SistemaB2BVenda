@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Application.ViewModels;
 
@@ -13,7 +11,7 @@ namespace SistemaVendas.Controllers
         public CompanyController(ICompanyAppService companyAppService)
         {
             _companyAppService = companyAppService;
-        }  
+        }
 
 
 
@@ -77,12 +75,13 @@ namespace SistemaVendas.Controllers
             try
             {
 
-                if (ModelState.IsValid) {
+                if (ModelState.IsValid)
+                {
 
                     _companyAppService.UpdateCompany(id, collection);
 
                     TempData["SuccessMessage"] = "Atualizado com sucesso!";
-                    
+
                 }
                 return RedirectToAction("GetCompany", "Company");
 

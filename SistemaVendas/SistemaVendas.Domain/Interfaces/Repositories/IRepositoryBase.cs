@@ -15,7 +15,7 @@ namespace SistemaVendas.Domain.Interfaces.Repositories
         void Delete(int id);
 
         void Dispose();
-        
+
     }
-  
+
 }

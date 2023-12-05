@@ -8,7 +8,7 @@ namespace SistemaVendas.Controllers
 {
     public class MenuViewComponent : ViewComponent
     {
-       
+
         public readonly IMenuAppService _menuAppService;
         private readonly IMapper _mapper;
 
@@ -20,7 +20,7 @@ namespace SistemaVendas.Controllers
         }
 
         // GET: MenuController
-       
+
         //public IViewComponentResult Invoke()
         //{
         //  var teste =  _menuRepository.Consulta().OrderBy(m => m.Nome);

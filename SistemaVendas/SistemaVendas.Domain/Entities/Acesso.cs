@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace SistemaVendas.Domain.Entities;
 
-namespace SistemaVendas.Domain.Entities;
-
-public  class Acesso
+public class Acesso
 {
     public int IdAcesso { get; set; }
 

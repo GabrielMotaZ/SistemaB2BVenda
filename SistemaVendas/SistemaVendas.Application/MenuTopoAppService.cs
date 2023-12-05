@@ -1,11 +1,6 @@
 ﻿using SistemaVendas.Application.Interface;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Application
 {
@@ -21,7 +16,7 @@ namespace SistemaVendas.Application
 
         public async Task<IEnumerable<MenuTopo>> GetMenuTop()
         {
-            return await _menuTopoService.GetMenuTop();   
+            return await _menuTopoService.GetMenuTop();
         }
     }
 }

@@ -9,13 +9,13 @@ namespace SistemaVendas.Application.Interface
 
         LoginViewModel GetLogin(string email, string? password);
 
-		LoginViewModel GetLoginId(int id);
+        LoginViewModel GetLoginId(int id);
 
-		void CreateLogin(LoginViewModel loginViewModel);
+        void CreateLogin(LoginViewModel loginViewModel);
 
         void UpdateLogin(int id, LoginViewModel loginViewModel);
-      
-       
-     
+
+
+
     }
 }

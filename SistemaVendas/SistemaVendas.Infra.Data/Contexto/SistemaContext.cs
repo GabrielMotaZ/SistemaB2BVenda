@@ -1,8 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
 using SistemaVendas.Domain.Entities;
-using SistemaVendas.Infra.Data.Contexto;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace SistemaVendas.Contexto;
 
@@ -22,13 +20,13 @@ public partial class SistemaContext : DbContext
 
     public virtual DbSet<Client> Clients { get; set; }
 
-	public virtual DbSet<Company> Companies { get; set; }
+    public virtual DbSet<Company> Companies { get; set; }
 
-	public virtual DbSet<CompanyGroup> CompanyGroups { get; set; }
+    public virtual DbSet<CompanyGroup> CompanyGroups { get; set; }
 
-	public virtual DbSet<Employee> Employees { get; set; }
+    public virtual DbSet<Employee> Employees { get; set; }
 
-	public virtual DbSet<Menu> Menus { get; set; }
+    public virtual DbSet<Menu> Menus { get; set; }
 
     public virtual DbSet<MenuTopo> MenuTopos { get; set; }
 
@@ -68,10 +66,10 @@ public partial class SistemaContext : DbContext
             entity.Property(e => e.IdAcessos).HasColumnName("idAcessos");
             entity.Property(e => e.IdEmployee).HasColumnName("idEmployee");
             entity.Property(e => e.Nome)
-				.HasMaxLength(20)
-				.IsUnicode(false)
-				.HasColumnName("nome");
-			entity.Property(e => e.Email)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("nome");
+            entity.Property(e => e.Email)
                 .HasMaxLength(100)
                 .IsUnicode(false)
                 .HasColumnName("email");
@@ -125,122 +123,122 @@ public partial class SistemaContext : DbContext
                 .HasColumnName("telefone");
         });
 
-		modelBuilder.Entity<Company>(entity =>
-		{
-			entity.HasKey(e => e.Id).HasName("PK__Company__3213E83F94B7A910");
+        modelBuilder.Entity<Company>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Company__3213E83F94B7A910");
 
-			entity.ToTable("Company");
+            entity.ToTable("Company");
 
-			entity.Property(e => e.Id).HasColumnName("id");
-			entity.Property(e => e.Bairro)
-				.HasMaxLength(100)
-				.IsUnicode(false)
-				.HasColumnName("bairro");
-			entity.Property(e => e.Cep)
-				.HasMaxLength(8)
-				.IsUnicode(false)
-				.HasColumnName("cep");
-			entity.Property(e => e.Cidade)
-				.HasMaxLength(100)
-				.IsUnicode(false)
-				.HasColumnName("cidade");
-			entity.Property(e => e.Cnpj)
-				.HasMaxLength(18)
-				.IsUnicode(false)
-				.HasColumnName("cnpj");
-			entity.Property(e => e.DataCadastro)
-				.HasColumnType("date")
-				.HasColumnName("dataCadastro");
-			entity.Property(e => e.Email)
-				.HasMaxLength(100)
-				.IsUnicode(false)
-				.HasColumnName("email");
-			entity.Property(e => e.InscricaoEstadual)
-				.HasMaxLength(16)
-				.IsUnicode(false)
-				.HasColumnName("inscricaoEstadual");
-			entity.Property(e => e.Nome)
-				.HasMaxLength(100)
-				.IsUnicode(false)
-				.HasColumnName("nome");
-			entity.Property(e => e.Numero)
-				.HasMaxLength(4)
-				.IsUnicode(false)
-				.HasColumnName("numero");
-			entity.Property(e => e.Rua)
-				.HasMaxLength(100)
-				.IsUnicode(false)
-				.HasColumnName("rua");
-			entity.Property(e => e.Telefone)
-				.HasMaxLength(12)
-				.IsUnicode(false)
-				.HasColumnName("telefone");
-			entity.Property(e => e.Uf)
-				.HasMaxLength(2)
-				.IsUnicode(false)
-				.HasColumnName("uf");
-		});
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Bairro)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("bairro");
+            entity.Property(e => e.Cep)
+                .HasMaxLength(8)
+                .IsUnicode(false)
+                .HasColumnName("cep");
+            entity.Property(e => e.Cidade)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("cidade");
+            entity.Property(e => e.Cnpj)
+                .HasMaxLength(18)
+                .IsUnicode(false)
+                .HasColumnName("cnpj");
+            entity.Property(e => e.DataCadastro)
+                .HasColumnType("date")
+                .HasColumnName("dataCadastro");
+            entity.Property(e => e.Email)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.InscricaoEstadual)
+                .HasMaxLength(16)
+                .IsUnicode(false)
+                .HasColumnName("inscricaoEstadual");
+            entity.Property(e => e.Nome)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("nome");
+            entity.Property(e => e.Numero)
+                .HasMaxLength(4)
+                .IsUnicode(false)
+                .HasColumnName("numero");
+            entity.Property(e => e.Rua)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("rua");
+            entity.Property(e => e.Telefone)
+                .HasMaxLength(12)
+                .IsUnicode(false)
+                .HasColumnName("telefone");
+            entity.Property(e => e.Uf)
+                .HasMaxLength(2)
+                .IsUnicode(false)
+                .HasColumnName("uf");
+        });
 
-		modelBuilder.Entity<CompanyGroup>(entity =>
-		{
-			entity.HasKey(e => e.Id).HasName("PK__CompanyG__3213E83F33273D4F");
+        modelBuilder.Entity<CompanyGroup>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__CompanyG__3213E83F33273D4F");
 
-			entity.ToTable("CompanyGroup");
+            entity.ToTable("CompanyGroup");
 
-			entity.Property(e => e.Id).HasColumnName("id");
-			entity.Property(e => e.IdCompany).HasColumnName("idCompany");
-			entity.Property(e => e.IdEmployee).HasColumnName("idEmployee");
+            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.IdCompany).HasColumnName("idCompany");
+            entity.Property(e => e.IdEmployee).HasColumnName("idEmployee");
 
-			entity.HasOne(d => d.IdCompanyNavigation).WithMany(p => p.CompanyGroups)
-				.HasForeignKey(d => d.IdCompany)
-				.HasConstraintName("FK_COMPANYGROUP_COMPANY");
+            entity.HasOne(d => d.IdCompanyNavigation).WithMany(p => p.CompanyGroups)
+                .HasForeignKey(d => d.IdCompany)
+                .HasConstraintName("FK_COMPANYGROUP_COMPANY");
 
-			entity.HasOne(d => d.IdEmployeeNavigation).WithMany(p => p.CompanyGroups)
-				.HasForeignKey(d => d.IdEmployee)
-				.HasConstraintName("FK_COMPANYGROUP_EMPLOYEE");
-		});
+            entity.HasOne(d => d.IdEmployeeNavigation).WithMany(p => p.CompanyGroups)
+                .HasForeignKey(d => d.IdEmployee)
+                .HasConstraintName("FK_COMPANYGROUP_EMPLOYEE");
+        });
 
-		modelBuilder.Entity<Employee>(entity =>
-		{
-			entity.HasKey(e => e.IdFunc).HasName("PK__funciona__61295649DF356BCB");
+        modelBuilder.Entity<Employee>(entity =>
+        {
+            entity.HasKey(e => e.IdFunc).HasName("PK__funciona__61295649DF356BCB");
 
-			entity.ToTable("Employee");
+            entity.ToTable("Employee");
 
-			entity.Property(e => e.IdFunc).HasColumnName("id_func");
-			entity.Property(e => e.Cpf)
-				.HasMaxLength(30)
-				.IsUnicode(false)
-				.HasColumnName("cpf");
-			entity.Property(e => e.DataContratado)
-				.HasColumnType("datetime")
-				.HasColumnName("data_contratado");
-			entity.Property(e => e.Email)
-				.HasMaxLength(30)
-				.IsUnicode(false)
-				.HasColumnName("email");
-			entity.Property(e => e.Endereco)
-				.HasMaxLength(100)
-				.IsUnicode(false)
-				.HasColumnName("endereco");
-			entity.Property(e => e.Nome)
-				.HasMaxLength(60)
-				.IsUnicode(false)
-				.HasColumnName("nome");
-			entity.Property(e => e.Sexo)
-				.HasMaxLength(20)
-				.IsUnicode(false)
-				.HasColumnName("sexo");
-			entity.Property(e => e.Telefone)
-				.HasMaxLength(30)
-				.IsUnicode(false)
-				.HasColumnName("telefone");
-			entity.Property(e => e.Turno)
-				.HasMaxLength(30)
-				.IsUnicode(false)
-				.HasColumnName("turno");
-		});
+            entity.Property(e => e.IdFunc).HasColumnName("id_func");
+            entity.Property(e => e.Cpf)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("cpf");
+            entity.Property(e => e.DataContratado)
+                .HasColumnType("datetime")
+                .HasColumnName("data_contratado");
+            entity.Property(e => e.Email)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("email");
+            entity.Property(e => e.Endereco)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("endereco");
+            entity.Property(e => e.Nome)
+                .HasMaxLength(60)
+                .IsUnicode(false)
+                .HasColumnName("nome");
+            entity.Property(e => e.Sexo)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("sexo");
+            entity.Property(e => e.Telefone)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("telefone");
+            entity.Property(e => e.Turno)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("turno");
+        });
 
-		modelBuilder.Entity<Menu>(entity =>
+        modelBuilder.Entity<Menu>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__menu__3213E83FCF042D8E");
 

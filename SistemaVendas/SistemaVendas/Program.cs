@@ -1,11 +1,11 @@
-using Microsoft.AspNetCore.Mvc.Formatters;
-using SistemaVendas.Configurations;
-using Serilog;
-using static System.Text.Json.Serialization.JsonIgnoreCondition;
-using Microsoft.EntityFrameworkCore;
-using SistemaVendas.Contexto;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using SistemaVendas.Configurations;
+using SistemaVendas.Contexto;
 using SistemaVendas.IoC;
+using static System.Text.Json.Serialization.JsonIgnoreCondition;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -83,7 +83,7 @@ static void RegisterServices(IServiceCollection services)
             options.LoginPath = "/Login/Login"; // Página de login
         });
 
-	services.AddInfra();
+    services.AddInfra();
 
 }
 

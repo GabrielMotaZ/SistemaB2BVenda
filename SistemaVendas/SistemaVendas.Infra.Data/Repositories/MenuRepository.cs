@@ -12,7 +12,7 @@ namespace SistemaVendas.Infra.Data.Repositories
     {
         private readonly ConexaoContext _conexaoContext;
         private readonly SistemaContext _sistemaContext;
-        public MenuRepository(ConexaoContext conexaoContext, SistemaContext sistemaContext) 
+        public MenuRepository(ConexaoContext conexaoContext, SistemaContext sistemaContext)
             : base(sistemaContext)
         {
             _conexaoContext = conexaoContext;

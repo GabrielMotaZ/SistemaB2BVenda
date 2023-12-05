@@ -14,14 +14,14 @@ namespace SistemaVendas.Application
         private readonly ILoginService _loginService;
 
 
-        private readonly IEmailService    _emailService;
-        private readonly IMapper _mapper;   
+        private readonly IEmailService _emailService;
+        private readonly IMapper _mapper;
 
         public EmployeeAppService(IEmployeeService employeeService, IMapper mapper, ILoginService loginService, IEmailService emailService)
-            : base(employeeService) 
+            : base(employeeService)
         {
             _employeeService = employeeService;
-			_loginService = loginService;
+            _loginService = loginService;
             _emailService = emailService;
             _mapper = mapper;
         }
@@ -30,15 +30,16 @@ namespace SistemaVendas.Application
         {
             object getEmployee;
 
-			if (nome == null) {
-				 getEmployee = _employeeService.GetAll();
-			}
+            if (nome == null)
+            {
+                getEmployee = _employeeService.GetAll();
+            }
             else
             {
                 getEmployee = _employeeService.GetEmployee(nome);
 
-			}
-            
+            }
+
             return _mapper.Map<IEnumerable<EmployeeViewModel>>(getEmployee);
 
         }
@@ -52,45 +53,45 @@ namespace SistemaVendas.Application
 
         public void CreateEmployee(EmployeeViewModel employeeViewModel)
         {
-            
 
-            var createMap       = _mapper.Map<Employee>(employeeViewModel);
 
-            createMap.Cpf       = createMap.Cpf.Replace(".", "").Replace("-", "");
-            createMap.Telefone  = createMap.Telefone.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "");
+            var createMap = _mapper.Map<Employee>(employeeViewModel);
+
+            createMap.Cpf = createMap.Cpf.Replace(".", "").Replace("-", "");
+            createMap.Telefone = createMap.Telefone.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "");
 
             _employeeService.Add(createMap);
 
             var senha = _loginService.geratePassword();
 
 
-           var login = (new LoginViewModel
+            var login = (new LoginViewModel
             {
-				Email       = createMap.Email,
-			    Senha       = senha,
-			    Data        = null,
-			    IdEmployee  = createMap.IdFunc,
-		    });
+                Email = createMap.Email,
+                Senha = senha,
+                Data = null,
+                IdEmployee = createMap.IdFunc,
+            });
 
 
             var user = _mapper.Map<Login>(login);
 
             _loginService.Add(user);
 
-    
-			_emailService.EmailPassword(createMap.Email,  createMap.Nome, senha);
+
+            _emailService.EmailPassword(createMap.Email, createMap.Nome, senha);
 
 
         }
 
         public void UpdateEmployee(int id, EmployeeViewModel employeeViewModel)
         {
-           employeeViewModel.IdFunc = id;
+            employeeViewModel.IdFunc = id;
 
-			employeeViewModel.Cpf           = employeeViewModel.Cpf.Replace(".", "").Replace("-", "");
-			employeeViewModel.Telefone      = employeeViewModel.Telefone.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "");
+            employeeViewModel.Cpf = employeeViewModel.Cpf.Replace(".", "").Replace("-", "");
+            employeeViewModel.Telefone = employeeViewModel.Telefone.Replace("(", "").Replace(")", "").Replace(" ", "").Replace("-", "");
 
-			var emp = _mapper.Map<Employee>(employeeViewModel);
+            var emp = _mapper.Map<Employee>(employeeViewModel);
 
             _employeeService.Update(emp);
         }

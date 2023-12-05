@@ -5,7 +5,7 @@ namespace SistemaVendas.Application.Interface
 {
     public interface IMenuAppService : IAppServiceBase<Menu>
     {
-        Task<IEnumerable<Menu>> GetMenu(); 
-        
+        Task<IEnumerable<Menu>> GetMenu();
+
     }
 }

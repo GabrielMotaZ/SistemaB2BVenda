@@ -6,7 +6,7 @@ namespace SistemaVendas.Domain.Interfaces.Services
     {
         Login GetLogin(string email, string? password);
 
-		string geratePassword();
+        string geratePassword();
 
-	}
+    }
 }

@@ -1,7 +1,4 @@
-﻿
-using SistemaVendas.Domain.Entities;
-using SistemaVendas.ViewModels;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 
 namespace SistemaVendas.Application.ViewModels
@@ -29,7 +26,7 @@ namespace SistemaVendas.Application.ViewModels
         public string? Email { get; set; }
 
         //[RegularExpression(@"^[0-9]*$", ErrorMessage = "somente números.")]
-        [MaxLength(16),MinLength(14)]
+        [MaxLength(16), MinLength(14)]
         [Required, Display(Name = "Telefone")]
         public string? Telefone { get; set; }
 
@@ -54,14 +51,14 @@ namespace SistemaVendas.Application.ViewModels
         [Required, Display(Name = "UF")]
         public string? Uf { get; set; }
 
-        
+
         [DataType(DataType.Date)]
         [Required, Display(Name = "DataContratado")]
         public DateTime DataCadastro { get; set; }
 
-		public virtual ICollection<CompanyGroupViewModel> CompanyGroups { get; set; } = new List<CompanyGroupViewModel>();
+        public virtual ICollection<CompanyGroupViewModel> CompanyGroups { get; set; } = new List<CompanyGroupViewModel>();
 
-		public virtual ICollection<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
+        public virtual ICollection<ProductViewModel> Products { get; set; } = new List<ProductViewModel>();
 
-	}
+    }
 }

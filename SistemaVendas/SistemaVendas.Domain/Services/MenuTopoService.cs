@@ -1,11 +1,6 @@
 ﻿using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Domain.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Domain.Services
 {
@@ -13,7 +8,7 @@ namespace SistemaVendas.Domain.Services
     {
         private readonly IMenuTopoRepository _menuTopoRepository;
 
-        public MenuTopoService(IMenuTopoRepository menuTopoRepository) 
+        public MenuTopoService(IMenuTopoRepository menuTopoRepository)
             : base(menuTopoRepository)
         {
             _menuTopoRepository = menuTopoRepository;
@@ -21,7 +16,7 @@ namespace SistemaVendas.Domain.Services
 
         public async Task<IEnumerable<MenuTopo>> GetMenuTop()
         {
-           return await _menuTopoRepository.GetMenuTop();  
+            return await _menuTopoRepository.GetMenuTop();
         }
     }
 }

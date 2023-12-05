@@ -3,7 +3,7 @@
 namespace SistemaVendas.Domain.Entities
 {
 
-    public  class Client
+    public class Client
     {
         public int Id_Cliente { get; set; }
 

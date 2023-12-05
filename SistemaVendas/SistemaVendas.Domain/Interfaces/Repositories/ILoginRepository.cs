@@ -6,5 +6,5 @@ namespace SistemaVendas.Domain.Interfaces.Repositories
     {
         Login GetLogin(string email, string? password);
 
-	}
+    }
 }

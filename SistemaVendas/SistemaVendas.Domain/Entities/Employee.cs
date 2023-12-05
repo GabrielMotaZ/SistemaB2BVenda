@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace SistemaVendas.Domain.Entities;
+﻿namespace SistemaVendas.Domain.Entities;
 
 public partial class Employee
 {

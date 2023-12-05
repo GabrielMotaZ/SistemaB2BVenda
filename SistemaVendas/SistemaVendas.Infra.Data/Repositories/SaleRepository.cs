@@ -1,15 +1,9 @@
-﻿using Dapper;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaVendas.Contexto;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Infra.Data.Contexto;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {
@@ -17,7 +11,7 @@ namespace SistemaVendas.Infra.Data.Repositories
     {
         private readonly ConexaoContext _conexaoContext;
         private readonly SistemaContext _sistemaContext;
-        public SaleRepository(ConexaoContext conexaoContext, SistemaContext sistemaContext) 
+        public SaleRepository(ConexaoContext conexaoContext, SistemaContext sistemaContext)
             : base(sistemaContext)
         {
             _conexaoContext = conexaoContext;

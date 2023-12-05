@@ -1,11 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Application.ViewModels;
-using SistemaVendas.Contexto;
-using SistemaVendas.Domain.Entities;
-using SistemaVendas.ViewModels;
-using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace SistemaVendas.Controllers
 {
@@ -49,60 +44,60 @@ namespace SistemaVendas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult QueryLogin(string email, string? Senha)
         {
-			try
+            try
             {
-                    var user = _loginAppService.GetLogin(email, Senha);
-                
+                var user = _loginAppService.GetLogin(email, Senha);
+
                 return RedirectToRoute(new { controller = "Main", action = "ListSales" /*id = 1 */});
-			}
-			catch (InvalidOperationException te)
-			{
-				
-				TempData["InfoMessage"] = te.Message;
-				return RedirectToAction("Login");
-			}
-            catch(NullReferenceException ex) 
+            }
+            catch (InvalidOperationException te)
             {
-			
-				TempData["InfoMessage"] = ex.Message;
-				return RedirectToAction("UpdateLogin", new { Email = email });
-                
-			}
-	
+
+                TempData["InfoMessage"] = te.Message;
+                return RedirectToAction("Login");
+            }
+            catch (NullReferenceException ex)
+            {
+
+                TempData["InfoMessage"] = ex.Message;
+                return RedirectToAction("UpdateLogin", new { Email = email });
+
+            }
+
         }
 
 
- 
+
         // GET: LoginController/Edit/5
         public IActionResult UpdateLogin(string email)
         {
             var teste = new LoginViewModel();
             try
             {
-				var login = _loginAppService.GetLogin(email, null);
+                var login = _loginAppService.GetLogin(email, null);
 
-				    _emailAppService.EmailPassword(login.Email, login.Nome);
+                _emailAppService.EmailPassword(login.Email, login.Nome);
 
                 teste = login;
-				
-				return View(login);
-			}
+
+                return View(login);
+            }
             catch (InvalidOperationException ex)
             {
-				TempData.Clear();
-				TempData["InfoMessage"] = ex.Message;
-				return RedirectToAction("Login");
-			}
-			catch (NullReferenceException ex)
-			{
+                TempData.Clear();
+                TempData["InfoMessage"] = ex.Message;
+                return RedirectToAction("Login");
+            }
+            catch (NullReferenceException ex)
+            {
 
-				TempData["InfoMessage"] = ex.Message;
-				return View(teste);
+                TempData["InfoMessage"] = ex.Message;
+                return View(teste);
 
-			}
+            }
 
 
-		}
+        }
 
         // POST: LoginController/Edit/5
         [HttpPost]
@@ -111,25 +106,25 @@ namespace SistemaVendas.Controllers
         {
             try
             {
-               
+
                 _loginAppService.UpdateLogin(id, loginViewModel);
 
                 return RedirectToAction("Login");
             }
-			catch (ArgumentNullException te)
-			{
-		
-				TempData["InfoMessage"] = te.Message;
-				return RedirectToAction("UpdateLogin");
-			}
+            catch (ArgumentNullException te)
+            {
+
+                TempData["InfoMessage"] = te.Message;
+                return RedirectToAction("UpdateLogin");
+            }
             catch (InvalidOperationException ex)
             {
-				
-				TempData["InfoMessage"] = ex.Message;
-				return RedirectToAction("UpdateLogin", new { Email = loginViewModel.Email });
-			}
-         
-		}
+
+                TempData["InfoMessage"] = ex.Message;
+                return RedirectToAction("UpdateLogin", new { Email = loginViewModel.Email });
+            }
+
+        }
 
         // GET: LoginController/Delete/5
         public ActionResult Delete(int id)

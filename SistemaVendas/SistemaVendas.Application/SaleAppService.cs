@@ -10,10 +10,10 @@ namespace SistemaVendas.Application
     {
         private readonly ISaleService _saleService;
         private readonly IMapper _mapper;
-        public SaleAppService(ISaleService saleService, IMapper mapper) 
+        public SaleAppService(ISaleService saleService, IMapper mapper)
             : base(saleService)
         {
-            _saleService = saleService;   
+            _saleService = saleService;
             _mapper = mapper;
         }
 
@@ -21,7 +21,7 @@ namespace SistemaVendas.Application
         {
             var sales = _saleService.ListSales();
 
-            return  _mapper.Map<IEnumerable<SaleViewModel>>(sales);
-        } 
+            return _mapper.Map<IEnumerable<SaleViewModel>>(sales);
+        }
     }
 }

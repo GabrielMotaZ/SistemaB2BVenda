@@ -6,7 +6,7 @@ namespace SistemaVendas.Controllers
 {
     public class MainController : Controller
     {
-       
+
         private readonly ISaleAppService _saleAppService;
         public MainController(ISaleAppService saleAppService)
         {
@@ -17,7 +17,7 @@ namespace SistemaVendas.Controllers
         // GET: MainController
         public IActionResult ListSales()
         {
-            var listSales =   _saleAppService.ListSales();
+            var listSales = _saleAppService.ListSales();
 
             return View(listSales);
         }

@@ -8,7 +8,7 @@ namespace SistemaVendas.Application.Interface
     {
         IEnumerable<SaleViewModel> ListSales();
 
-        
 
-	}
+
+    }
 }

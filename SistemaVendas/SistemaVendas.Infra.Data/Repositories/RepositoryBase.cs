@@ -1,15 +1,13 @@
-﻿using Ardalis.GuardClauses;
-
-using SistemaVendas.Domain.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
 using SistemaVendas.Contexto;
-using Microsoft.EntityFrameworkCore;
+using SistemaVendas.Domain.Interfaces.Repositories;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-    
-      
+
+
         private readonly SistemaContext _sistemaContext;
         public RepositoryBase(SistemaContext sistemaContext)
         {

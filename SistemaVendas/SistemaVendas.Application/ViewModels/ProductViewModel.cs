@@ -1,12 +1,4 @@
-﻿using SistemaVendas.Domain.Entities;
-using SistemaVendas.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SistemaVendas.Application.ViewModels
+﻿namespace SistemaVendas.Application.ViewModels
 {
     public class ProductViewModel
     {

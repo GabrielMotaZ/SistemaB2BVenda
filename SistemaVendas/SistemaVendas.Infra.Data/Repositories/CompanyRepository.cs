@@ -2,11 +2,6 @@
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Infra.Data.Contexto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {

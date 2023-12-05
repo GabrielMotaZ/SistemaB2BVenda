@@ -1,31 +1,25 @@
 ﻿using Dapper;
-using SistemaVendas.Contexto;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Infra.Data.Contexto;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {
-	public class DashboardRepository : IDashboardRepository
-	{
-		private readonly ConexaoContext _conexaoContext;
-		//private readonly SistemaContext _sistemaContext;
+    public class DashboardRepository : IDashboardRepository
+    {
+        private readonly ConexaoContext _conexaoContext;
+        //private readonly SistemaContext _sistemaContext;
 
-		public DashboardRepository(ConexaoContext conexaoContext) 
-		{
-			_conexaoContext = conexaoContext;
-		}
-		public IEnumerable<Dashboard> DashboardByWeek()
-		{
-			try
-			{
-				string sqlConsulta = $@"
+        public DashboardRepository(ConexaoContext conexaoContext)
+        {
+            _conexaoContext = conexaoContext;
+        }
+        public IEnumerable<Dashboard> DashboardByWeek()
+        {
+            try
+            {
+                string sqlConsulta = $@"
 				                         
 				SELECT 
 
@@ -55,18 +49,18 @@ namespace SistemaVendas.Infra.Data.Repositories
 				
 				 ";
 
-				var connection = _conexaoContext.GetConnection();
+                var connection = _conexaoContext.GetConnection();
 
-				var t = connection.Query<Dashboard>(sqlConsulta, null, commandType: CommandType.Text);
+                var t = connection.Query<Dashboard>(sqlConsulta, null, commandType: CommandType.Text);
 
 
-				return t;
-			}
-			catch (Exception ex)
-			{
+                return t;
+            }
+            catch (Exception ex)
+            {
 
-				throw;
-			}
-		}
-	}
+                throw;
+            }
+        }
+    }
 }

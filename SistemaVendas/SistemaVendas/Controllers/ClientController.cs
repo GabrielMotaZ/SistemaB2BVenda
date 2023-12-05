@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SistemaVendas.Application.Interface;
 using SistemaVendas.Application.ViewModels;
@@ -18,7 +17,7 @@ namespace SistemaVendas.Controllers
         }
 
 
-        
+
         // GET: ClientController
         public IActionResult GetClient()
         {

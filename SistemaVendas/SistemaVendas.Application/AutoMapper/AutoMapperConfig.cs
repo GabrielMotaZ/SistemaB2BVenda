@@ -2,7 +2,7 @@
 
 namespace SistemaVendas.AutoMapper
 {
-    public class AutoMapperConfig 
+    public class AutoMapperConfig
     {
         public static void RegisterMappings()
         {
@@ -16,7 +16,7 @@ namespace SistemaVendas.AutoMapper
             var configuration = new MapperConfiguration(x =>
             {
                 x.AddProfile<DomainToViewModelMappingProfile>();
-                
+
 
             });
 

@@ -3,12 +3,6 @@ using SistemaVendas.Contexto;
 using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Infra.Data.Contexto;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {
@@ -16,10 +10,10 @@ namespace SistemaVendas.Infra.Data.Repositories
     {
         private readonly ConexaoContext _conexaoContext;
         private readonly SistemaContext _sistemaContext;
-        public EmployeeRepository(SistemaContext sistemaContext, ConexaoContext conexaoContext) 
+        public EmployeeRepository(SistemaContext sistemaContext, ConexaoContext conexaoContext)
             : base(sistemaContext)
         {
-            _conexaoContext = conexaoContext;  
+            _conexaoContext = conexaoContext;
             _sistemaContext = sistemaContext;
         }
 
@@ -50,7 +44,7 @@ namespace SistemaVendas.Infra.Data.Repositories
 
                 var connection = _conexaoContext.GetConnection();
 
-                var t =  connection.Query<Employee>(sqlConsulta);
+                var t = connection.Query<Employee>(sqlConsulta);
 
                 return t;
 

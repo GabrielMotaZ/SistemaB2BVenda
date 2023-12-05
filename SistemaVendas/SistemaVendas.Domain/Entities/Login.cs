@@ -1,10 +1,6 @@
-﻿using AutoMapper.Configuration.Annotations;
-using System;
-using System.Collections.Generic;
+﻿namespace SistemaVendas.Domain.Entities;
 
-namespace SistemaVendas.Domain.Entities;
-
-public  class Login
+public class Login
 {
     public int IdLogin { get; set; }
 
@@ -13,8 +9,8 @@ public  class Login
 
     public string? Senha { get; set; }
 
- 
-	public DateTime? Data { get; set; }
+
+    public DateTime? Data { get; set; }
 
     public int? IdAcessos { get; set; }
 

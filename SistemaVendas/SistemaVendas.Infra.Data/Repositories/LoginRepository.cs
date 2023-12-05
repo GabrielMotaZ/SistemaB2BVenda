@@ -1,14 +1,10 @@
-﻿using SistemaVendas.Domain.Entities;
+﻿using Dapper;
+using SistemaVendas.Contexto;
+using SistemaVendas.Domain.Entities;
 using SistemaVendas.Domain.Interfaces.Repositories;
 using SistemaVendas.Infra.Data.Contexto;
 using System.Data;
-using Dapper;
-using SistemaVendas.Contexto;
 using static Dapper.SqlMapper;
-using System.Linq.Expressions;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Org.BouncyCastle.Crypto.Digests;
 
 namespace SistemaVendas.Infra.Data.Repositories
 {
@@ -16,17 +12,17 @@ namespace SistemaVendas.Infra.Data.Repositories
     {
         private readonly ConexaoContext _conexaoContext;
         private readonly SistemaContext _sistemaContext;
-        public LoginRepository(ConexaoContext conexaoContext, SistemaContext sistemaContext) 
+        public LoginRepository(ConexaoContext conexaoContext, SistemaContext sistemaContext)
               : base(sistemaContext)
         {
             _conexaoContext = conexaoContext;
             _sistemaContext = sistemaContext;
         }
 
-        public  Login GetLogin(string email, string? password)
+        public Login GetLogin(string email, string? password)
         {
-			try
-			{
+            try
+            {
                 string consultaLogin = $@" 
 
                                             SELECT 
@@ -48,31 +44,31 @@ namespace SistemaVendas.Infra.Data.Repositories
                 {
                     consultaLogin += $@" AND senha = '{password}'";
 
-				}
+                }
 
 
                 var connection = _conexaoContext.GetConnection();
 
-                var t =   connection.QueryFirst<Login>(consultaLogin, null, commandType: CommandType.Text);
+                var t = connection.QueryFirst<Login>(consultaLogin, null, commandType: CommandType.Text);
 
                 return t;
 
             }
-     
-            catch(InvalidOperationException te)
-			{
-				throw new InvalidOperationException(te.Message);
-			}
-			catch (Exception ex)
-			{
 
-				throw new Exception(ex.Message);
-			}
-			
+            catch (InvalidOperationException te)
+            {
+                throw new InvalidOperationException(te.Message);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+
         }
 
 
-	}
+    }
 
 }
 

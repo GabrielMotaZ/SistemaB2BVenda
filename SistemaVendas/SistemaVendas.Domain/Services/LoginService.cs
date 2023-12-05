@@ -15,27 +15,27 @@ namespace SistemaVendas.Domain.Services
             _loginRepository = loginRepository;
         }
 
-		public string geratePassword()
-		{
+        public string geratePassword()
+        {
 
-			const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$&*";
+            const string caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$&*";
 
-			StringBuilder senha = new StringBuilder();
-			Random random = new Random();
+            StringBuilder senha = new StringBuilder();
+            Random random = new Random();
 
-			for (int i = 0; i < 6; i++)
-			{
-				int index = random.Next(0, caracteres.Length);
-				senha.Append(caracteres[index]);
-			}
+            for (int i = 0; i < 6; i++)
+            {
+                int index = random.Next(0, caracteres.Length);
+                senha.Append(caracteres[index]);
+            }
 
-			return senha.ToString();
-		}
+            return senha.ToString();
+        }
 
-		public Login GetLogin(string email, string? password)
+        public Login GetLogin(string email, string? password)
         {
             return _loginRepository.GetLogin(email, password);
         }
 
-	}
+    }
 }
